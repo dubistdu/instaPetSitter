@@ -1,0 +1,34 @@
+.page-header
+  = link_to sitters_path, class: 'btn btn-default' do
+    %span.glyphicon.glyphicon-list-alt
+    Back
+  = link_to edit_sitter_path(@sitter), class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-pencil
+    Edit
+  %h1 Show sitter
+
+%dl.dl-horizontal
+  %dt Name:
+  %dd= @sitter.name
+  %dt Address:
+  %dd= @sitter.address
+  %dt City:
+  %dd= @sitter.city
+  %dt State:
+  %dd= @sitter.state
+  %dt Zipcode:
+  %dd= @sitter.zipcode
+  %dt Phone:
+  %dd= @sitter.phone
+  %dt Email:
+  %dd= @sitter.email
+  %dt Lat:
+  %dd= @sitter.lat
+  %dt Long:
+  %dd= @sitter.long
+  %dt Backyard:
+  %dd= @sitter.backyard
+  %dt Preferences:
+  %dd= @sitter.preferences
+  %dt Picture:
+  %dd= @sitter.picture_id

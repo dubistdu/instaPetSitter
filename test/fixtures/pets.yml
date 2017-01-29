@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pet_kind: MyString
+  breed: MyString
+  dog_lg: 1
+  dog_md: 1
+  dog_sm: 1
+  cat: 1
+  other: 1
+  user_id: 1
+  sitter_id: 1
+
+two:
+  pet_kind: MyString
+  breed: MyString
+  dog_lg: 1
+  dog_md: 1
+  dog_sm: 1
+  cat: 1
+  other: 1
+  user_id: 1
+  sitter_id: 1

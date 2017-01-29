@@ -1,0 +1,2 @@
+class SitPet < ApplicationRecord
+end

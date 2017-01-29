@@ -1,0 +1,16 @@
+.page-header
+  = link_to ratings_path, class: 'btn btn-default' do
+    %span.glyphicon.glyphicon-list-alt
+    Back
+  = link_to edit_rating_path(@rating), class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-pencil
+    Edit
+  %h1 Show rating
+
+%dl.dl-horizontal
+  %dt Star:
+  %dd= @rating.star
+  %dt User:
+  %dd= @rating.user_id
+  %dt Sitter:
+  %dd= @rating.sitter_id

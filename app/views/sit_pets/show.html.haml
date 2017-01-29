@@ -1,0 +1,26 @@
+.page-header
+  = link_to sit_pets_path, class: 'btn btn-default' do
+    %span.glyphicon.glyphicon-list-alt
+    Back
+  = link_to edit_sit_pet_path(@sit_pet), class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-pencil
+    Edit
+  %h1 Show sit_pet
+
+%dl.dl-horizontal
+  %dt Pet kind:
+  %dd= @sit_pet.pet_kind
+  %dt Breed:
+  %dd= @sit_pet.breed
+  %dt Dog lg:
+  %dd= @sit_pet.dog_lg
+  %dt Dog md:
+  %dd= @sit_pet.dog_md
+  %dt Dog sm:
+  %dd= @sit_pet.dog_sm
+  %dt Cat:
+  %dd= @sit_pet.cat
+  %dt Other:
+  %dd= @sit_pet.other
+  %dt Sitter:
+  %dd= @sit_pet.sitter_id

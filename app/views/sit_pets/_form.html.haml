@@ -1,0 +1,47 @@
+= form_for @sit_pet, html: { class: "form-horizontal", role: "form" } do |f|
+  -if @sit_pet.errors.any?
+    .alert.alert-danger.alert-dismissable{role: "alert"}
+      %button.close{type: "button", data: {dismiss: "alert"} }
+        %span{aria: {hidden: "true"} } &times;
+        %span.sr-only Close
+      %h4= "#{pluralize(@sit_pet.errors.count, "error")} prohibited this sit_pet from being saved:"
+
+      %ul
+        - @sit_pet.errors.full_messages.each do |msg|
+          %li= msg
+
+  .form-group
+    = f.label :pet_kind, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :pet_kind, class: 'form-control'
+  .form-group
+    = f.label :breed, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :breed, class: 'form-control'
+  .form-group
+    = f.label :dog_lg, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.number_field :dog_lg, class: 'form-control'
+  .form-group
+    = f.label :dog_md, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.number_field :dog_md, class: 'form-control'
+  .form-group
+    = f.label :dog_sm, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.number_field :dog_sm, class: 'form-control'
+  .form-group
+    = f.label :cat, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.number_field :cat, class: 'form-control'
+  .form-group
+    = f.label :other, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.number_field :other, class: 'form-control'
+  .form-group
+    = f.label :sitter_id, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.number_field :sitter_id, class: 'form-control'
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      = f.submit class: 'btn btn-primary'
