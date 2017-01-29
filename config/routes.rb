@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  root 'pages#welcome'
+  get 'pages/welcome'
+
   resources :favorites
   resources :ratings
   resources :users
