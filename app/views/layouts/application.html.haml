@@ -37,6 +37,13 @@
               = link_to "Paw Necessities", ""
             %li
               = link_to "Sign up", ""
+            - if logged_in?
+              %li
+                = link_to "SIGN OUT", logout_path
+            - else
+              %li
+                = link_to 'SIGN IN', auth_path(provider: 'twitter, facebook')
+
 
             %li.dropdown
               %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}

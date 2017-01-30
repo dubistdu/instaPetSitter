@@ -34,6 +34,8 @@ gem "refile-postgres"
 # Authentication via oauth
 gem 'omniauth'
 gem 'omniauth-github'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
 
 
 # Use Redis adapter to run Action Cable in production
