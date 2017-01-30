@@ -17,7 +17,7 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    %nav.navbar.navbar-inverse.navbar-fixed-top{role: "navigation"}
+    %nav.navbar.navbar-inverse.navbar-fixed-top.jasmine{role: "navigation"}
       .container
         .navbar-header
           %button.navbar-toggle.collapsed{type: "button", data: {toggle: "collapse", target: "#navbar"}, aria: {expanded: "false", controls: "navbar"} }
@@ -25,17 +25,48 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          = link_to "#", class: "navbar-brand" do
-            InstaPetSitter
+          = link_to root_path, class: "navbar-brand" do
+            INSTA PAW SITTER
         #navbar.collapse.navbar-collapse
-          %ul.nav.navbar-nav
-            %li.active
-              = link_to "Home", "#"
-    .container
-      - flash.each do |name, msg|
-        = content_tag :div, class: "alert alert-#{name == :error ? "danger" : "success" } alert-dismissable", role: "alert" do
-          %button.close{type: "button", data: {dismiss: "alert"} }
-            %span{aria: {hidden: "true"} } &times;
-            %span.sr-only Close
-          = msg
-      = yield
+          %ul.nav.navbar-nav.pull-right.menu_cap
+            %li
+              = link_to "Search", ""  # This will have two options like the cover page and lead to either
+            %li
+              = link_to "Become A Sitter", new_sitter_path
+            %li
+              = link_to "Paw Necessities", ""
+            %li
+              = link_to "Sign up", ""
+
+            %li.dropdown
+              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                Signin
+                %span.caret
+                  %ul#login-dp.dropdown-menu
+                    %li
+                      .row
+                        .col-md-12
+                          Login via
+                          .social-buttons
+                            %a.btn.btn-fb{:href => "#"}
+                              %i.fa.fa-facebook
+                              Facebook
+                          .social-buttons
+                            %a.btn.btn-tw{:href => "#"}
+                              %i.fa.fa-twitter
+                              Twitter
+                        .bottom.text-center
+                          New here ?
+                          %a{:href => "#"}
+                            Join Us
+        / /.navbar-collapse
+      / /.container-fluid
+
+
+  - flash.each do |name, msg|
+    = content_tag :div, class: "alert alert-#{name == :error ? "danger" : "success" } alert-dismissable", role: "alert" do
+      %button.close{type: "button", data: {dismiss: "alert"} }
+        %span{aria: {hidden: "true"} } &times;
+        %span.sr-only Close
+      = msg
+  = yield

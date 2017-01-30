@@ -12,6 +12,7 @@ class SittersController < ApplicationController
   # GET /sitters/new
   def new
     @sitter = Sitter.new
+    @sitter.sit_pets.build
   end
 
   # GET /sitters/1/edit
@@ -50,6 +51,6 @@ class SittersController < ApplicationController
   private
     # Only allow a trusted parameter "white list" through.
     def sitter_params
-      params.require(:sitter).permit(:name, :address, :city, :state, :zipcode, :phone, :email, :lat, :long, :backyard, :preferences, :picture_id)
+      params.require(:sitter).permit(:name, :address, :city, :state, :zipcode, :phone, :email, :lat, :long, :backyard, :preferences, :picture_id, sit_pets_attributes:[ :pet_kind, :breed, :dog_lg, :dog_md, :dog_sm, :cat, :other])
     end
 end

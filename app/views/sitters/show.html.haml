@@ -22,13 +22,19 @@
   %dd= @sitter.phone
   %dt Email:
   %dd= @sitter.email
-  %dt Lat:
-  %dd= @sitter.lat
-  %dt Long:
-  %dd= @sitter.long
   %dt Backyard:
-  %dd= @sitter.backyard
+  %dd
+    -if @sitter.backyard == true
+      Yes
+    -else
+      No
+  %dd
+
   %dt Preferences:
   %dd= @sitter.preferences
   %dt Picture:
-  %dd= @sitter.picture_id
+  .image-container.img
+  -if @sitter.picture.present?
+    = image_tag attachment_url(@sitter, :picture), size: "300x300"
+  -else
+    = image_tag("dogicon.jpg", size: "300x300")
