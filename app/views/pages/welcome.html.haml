@@ -28,15 +28,15 @@
           INSTA PAW SITTER
       #navbar.collapse.navbar-collapse.font_wireframe
         %ul.nav.navbar-nav.pull-right.menu_cap
-          %li
+          %li.menu
             = link_to "Become A Sitter", new_sitter_path
-          %li
+          %li.menu
             = link_to "Paw Necessities", "#"
-          %li
+          %li.menu
             = link_to "Sign up", "#"
 
           - if logged_in?
-            %li
+            %li.menu
               = link_to "SIGN OUT", logout_path
           - else
 
@@ -60,11 +60,6 @@
                               Twitter
 
 
-                        .bottom.text-center
-                          New here ?
-                          %a{:href => "#"}
-                            Join Us
-
   %video#bgvid
   = video_tag("french.mp4", :autoplay => true, :loop => true, poster: "french.jpg")
 
@@ -85,7 +80,7 @@
               %i.glyphicon.glyphicon-search
 
         .col-md-4.each_button
-          = link_to "final_pages_list_sitter_path", class: "btn btn-labeled default nearby-sitter" do
+          = link_to sitters_path, class: "btn btn-labeled default nearby-sitter" do
             Nearby Sitter Now &nbsp
             %span.btn-label
               %i.glyphicon.glyphicon-search

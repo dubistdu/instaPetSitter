@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170129020828) do
+ActiveRecord::Schema.define(version: 20170130204552) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,8 +99,12 @@ ActiveRecord::Schema.define(version: 20170129020828) do
     t.string   "email"
     t.string   "picture_id"
     t.text     "about_me"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "access_token"
+    t.string   "nickname"
   end
 
   add_foreign_key "photos", "sitters"

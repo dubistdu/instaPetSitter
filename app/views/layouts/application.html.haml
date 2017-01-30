@@ -29,43 +29,41 @@
             INSTA PAW SITTER
         #navbar.collapse.navbar-collapse
           %ul.nav.navbar-nav.pull-right.menu_cap
-            %li
+            %li.menu
               = link_to "Search", ""  # This will have two options like the cover page and lead to either
             %li
+              = link_to "Sitters", sitters_path
+            %li
               = link_to "Become A Sitter", new_sitter_path
-            %li
+            %li.menu
               = link_to "Paw Necessities", ""
-            %li
-              = link_to "Sign up", ""
+            %li.menu
+              = link_to "Sign up", "#"
+
             - if logged_in?
-              %li
+              %li.menu
                 = link_to "SIGN OUT", logout_path
             - else
-              %li
-                = link_to 'SIGN IN', auth_path(provider: 'twitter, facebook')
 
+              %li.dropdown
+                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                  Signin
+                  %span.caret
+                    %ul#login-dp.dropdown-menu
+                      %li
+                        .row
+                          .col-md-12
+                            Login via
+                            .social-buttons
+                              = link_to auth_path(provider:'facebook'), class: "btn btn-fb" do
+                                %i.fa.fa-facebook
+                                Facebook
 
-            %li.dropdown
-              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                Signin
-                %span.caret
-                  %ul#login-dp.dropdown-menu
-                    %li
-                      .row
-                        .col-md-12
-                          Login via
-                          .social-buttons
-                            %a.btn.btn-fb{:href => "#"}
-                              %i.fa.fa-facebook
-                              Facebook
-                          .social-buttons
-                            %a.btn.btn-tw{:href => "#"}
-                              %i.fa.fa-twitter
-                              Twitter
-                        .bottom.text-center
-                          New here ?
-                          %a{:href => "#"}
-                            Join Us
+                            .social-buttons
+                              = link_to auth_path(provider:'twitter'), class: "btn btn-tw" do
+                                %i.fa.fa-twitter
+                                Twitter
+
         / /.navbar-collapse
       / /.container-fluid
 
