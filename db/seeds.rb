@@ -6,4 +6,4 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-kenia = Sitter.create!(name: "Kenia Valladarez", address: "928 22nd street, city: "Sarasota", state: "FL", zipcode: "34234", phone: "(941) 954-5726", email:"kenia@example.com", website: "http://www.jpanrestaurant.com", price: 4, cuisine: "Japanese" )
+user = user.create!(name: "Kenia Valladarez", address: "928 22nd street, city: "Sarasota", state: "FL", zipcode: "34234", phone: "(941) 954-5726", email:"kenia@example.com", website: "http://www.jpanrestaurant.com", price: 4, cuisine: "Japanese" )
