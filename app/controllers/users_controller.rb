@@ -12,6 +12,7 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
+    @user.pets.build
   end
 
   # GET /users/1/edit
@@ -50,6 +51,6 @@ class UsersController < ApplicationController
   private
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:name, :address, :phone, :email, :picture_id, :about_me)
+      params.require(:user).permit(:name, :address, :phone, :email, :picture, :about_me, pets_attributes:[:pet_kind, :breed, :dog_lg, :dog_md, :dog_sm, :cat, :other])
     end
 end

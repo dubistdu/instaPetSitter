@@ -4,4 +4,5 @@ class User < ApplicationRecord
   has_many :pets
   has_many :ratings
   attachment :picture
+  accepts_nested_attributes_for :pets
 end

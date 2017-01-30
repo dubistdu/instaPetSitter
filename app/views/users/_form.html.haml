@@ -10,30 +10,65 @@
         - @user.errors.full_messages.each do |msg|
           %li= msg
 
-  .form-group
-    = f.label :name, class: 'col-sm-2 control-label'
-    .col-sm-10
-      = f.text_field :name, class: 'form-control'
-  .form-group
-    = f.label :address, class: 'col-sm-2 control-label'
-    .col-sm-10
-      = f.text_field :address, class: 'form-control'
-  .form-group
-    = f.label :phone, class: 'col-sm-2 control-label'
-    .col-sm-10
-      = f.text_field :phone, class: 'form-control'
-  .form-group
-    = f.label :email, class: 'col-sm-2 control-label'
-    .col-sm-10
-      = f.text_field :email, class: 'form-control'
-  .form-group
-    = f.label :picture_id, class: 'col-sm-2 control-label'
-    .col-sm-10
-      = f.text_field :picture_id, class: 'form-control'
-  .form-group
-    = f.label :about_me, class: 'col-sm-2 control-label'
-    .col-sm-10
-      = f.text_area :about_me, class: 'form-control'
-  .form-group
-    .col-sm-offset-2.col-sm-10
-      = f.submit class: 'btn btn-primary'
+  .container.auth
+    %h1.text-center
+      User profile
+    .big-form.well.auth-box
+      .form-group
+        = f.label :name, class: 'col-sm-2 control-label'
+        .col-sm-10
+          = f.text_field :name, class: 'form-control'
+      .form-group
+        = f.label :address, class: 'col-sm-2 control-label'
+        .col-sm-10
+          = f.text_field :address, class: 'form-control'
+      .form-group
+        = f.label :phone, class: 'col-sm-2 control-label'
+        .col-sm-10
+          = f.text_field :phone, class: 'form-control'
+      .form-group
+        = f.label :email, class: 'col-sm-2 control-label'
+        .col-sm-10
+          = f.text_field :email, class: 'form-control'
+      .form-group
+        = f.label :picture, class: 'col-sm-2 control-label'
+        .col-sm-8
+          = f.attachment_field :picture
+      .form-group
+        = f.label :about_me, class: 'col-sm-2 control-label'
+        .col-sm-10
+          = f.text_area :about_me, class: 'form-control'
+
+      = f.fields_for :pets do |pets_form|
+        .form-group
+          = pets_form.label :pet_kind, class: 'col-sm-2 control-label'
+          .col-sm-10
+            = pets_form.text_field :pet_kind, class: 'form-control'
+        .form-group
+          = pets_form.label :breed, class: 'col-sm-2 control-label'
+          .col-sm-10
+            = pets_form.text_field :breed, class: 'form-control'
+        .form-group
+          = pets_form.label :dog_lg, class: 'col-sm-2 control-label'
+          .col-sm-10
+            = pets_form.number_field :dog_lg, class: 'form-control'
+        .form-group
+          = pets_form.label :dog_md, class: 'col-sm-2 control-label'
+          .col-sm-10
+            = pets_form.number_field :dog_md, class: 'form-control'
+        .form-group
+          = pets_form.label :dog_sm, class: 'col-sm-2 control-label'
+          .col-sm-10
+            = pets_form.number_field :dog_sm, class: 'form-control'
+        .form-group
+          = pets_form.label :cat, class: 'col-sm-2 control-label'
+          .col-sm-10
+            = pets_form.number_field :cat, class: 'form-control'
+        .form-group
+          = pets_form.label :other, class: 'col-sm-2 control-label'
+          .col-sm-10
+            = pets_form.number_field :other, class: 'form-control'
+
+      .form-group
+        .col-sm-offset-2.col-sm-10
+          = f.submit class: 'btn btn-primary'

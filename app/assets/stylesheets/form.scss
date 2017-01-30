@@ -12,11 +12,12 @@
 
 .auth {
   margin-top: 5%;
+  font-family: 'Futura', sans-serif;
 
   h1 {
     color: #fff !important;
     font-weight: 300;
-    font-family: 'Open Sans', sans-serif;
+
     span {
       font-size: 21px;
       display: block;
@@ -174,6 +175,17 @@
     text-align: center;
   }
 
+.form_submit_btn {
+  border-radius: 50px;
+  background-color: rgba(223, 116, 72, 1);
+  border: white, 2px, solid;
+  color: white;
+  text-align: center;
+}
+
+.button_center {
+  text-align: center;
+}
 h4.text-center {
   padding: 10px 0;
 }

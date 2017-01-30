@@ -34,7 +34,7 @@
           = f.label :state, class: 'col-sm-1 control-label'
           .col-sm-3
             = f.text_field :state, class: 'form-control'
-          = f.label :zipcode, class: 'col-sm-1 control-label'
+          = f.label :zip, class: 'col-sm-1 control-label'
           .col-sm-2
             = f.text_field :zipcode, class: 'form-control'
         .form-group
@@ -57,39 +57,30 @@
         %h4.text-center
           If you have any pets, please fill out the form below
 
-      = f.fields_for :sit_pets do |sit_pet_form|
+      = f.fields_for :sit_pets do |sit_pets_form|
+
         .form-group
-          = sit_pet_form.label :pet_kind, class: 'col-sm-2 control-label'
+          = sit_pets_form.label :breed, class: 'col-sm-2 control-label'
           .col-sm-10
-            = sit_pet_form.text_field :pet_kind, class: 'form-control'
+            = sit_pets_form.text_field :breed, class: 'form-control'
         .form-group
-          = sit_pet_form.label :breed, class: 'col-sm-2 control-label'
-          .col-sm-10
-            = sit_pet_form.text_field :breed, class: 'form-control'
-        .form-group
-          = sit_pet_form.label :dog_lg, class: 'col-sm-2 control-label'
-          .col-sm-10
+          = sit_pets_form.label :Large_dog_50_lbs_plus, class: 'col-sm-2 control-label',placeholder: 'How many'
+          .col-sm-2
             = sit_pet_form.number_field :dog_lg, class: 'form-control'
+          = sit_pets_form.label :Medium_dog_up_to_49_lbs, class: 'col-sm-2 control-label'
+          .col-sm-2
+            = sit_pets_form.number_field :dog_md, class: 'form-control'
+          = sit_pets_form.label :small_dog_up_to_25_lbs , class: 'col-sm-2 control-label'
+          .col-sm-2
+            = sit_pets_form.number_field :dog_sm, class: 'form-control'
         .form-group
-          = sit_pet_form.label :dog_md, class: 'col-sm-2 control-label'
+          = sit_pets_form.label :cat, class: 'col-sm-2 control-label'
           .col-sm-10
-            = sit_pet_form.number_field :dog_md, class: 'form-control'
+            = sit_pets_form.number_field :cat, class: 'form-control'
         .form-group
-          = sit_pet_form.label :dog_sm, class: 'col-sm-2 control-label'
+          = sit_pets_form.label :other_type, class: 'col-sm-2 control-label'
           .col-sm-10
-            = sit_pet_form.number_field :dog_sm, class: 'form-control'
-        .form-group
-          = sit_pet_form.label :cat, class: 'col-sm-2 control-label'
-          .col-sm-10
-            = sit_pet_form.number_field :cat, class: 'form-control'
-        .form-group
-          = sit_pet_form.label :other, class: 'col-sm-2 control-label'
-          .col-sm-10
-            = sit_pet_form.number_field :other, class: 'form-control'
-        .form-group
-          = sit_pet_form.label :sitter_id, class: 'col-sm-2 control-label'
-          .col-sm-10
-            = sit_pet_form.number_field :sitter_id, class: 'form-control'
+            = sit_pets_form.number_field :other, class: 'form-control'
 
       -# .form-group
       -#   %label.control-label{:for => "radios"} Do you have any pets?
@@ -103,9 +94,10 @@
       -#         No &nbsp
 
 
-      .form-group
-        .col-sm-offset-2.col-sm-10
-          = f.submit class: 'btn btn-primary'
+      .form-group.button_center
+
+        = f.submit class: 'btn btn-default form_submit_btn'
+
 
   -# .container.auth
   -#   %h1.text-center

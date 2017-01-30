@@ -17,6 +17,12 @@
   %dt Email:
   %dd= @user.email
   %dt Picture:
-  %dd= @user.picture_id
+  %dd
+    .image-container.img
+    -if @user.picture.present?
+      = image_tag attachment_url(@user, :picture), size: "300x300"
+    -else
+      = image_tag("dogicon.jpg", size: "300x300")
+
   %dt About me:
   %dd= @user.about_me
