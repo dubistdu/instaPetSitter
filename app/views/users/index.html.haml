@@ -2,7 +2,7 @@
 .cat_dog_tab
   .container.text-center
     .row
-      .col-md-6.col-md-offset-3{:role => "tabpanel"}
+      .col-xs-12.col-sm-6.col-sm-offset-3{:role => "tabpanel"}
         / Nav tabs
         %ul#nav-tabs.nav.nav-justified{:role => "tablist"}
           %li.active{:role => "presentation"}
@@ -24,182 +24,21 @@
               .row.form-group
                 .col-xs-12.col-sm-6
                   %ul#contact-list.list-group
-                    - @users.each do |user|
-                      %li.list-group-item
-                        .col-xs-12.col-sm-3
-
-                          = link_to user do
-                            -if user.picture.present?
-                              %img
-                                = image_tag attachment_url(user, :picture), size: "100x100", class: "img-responsive img-circle"
-                            -else
-                              = image_tag("dogicon.jpg", size: "100x100", class: "img-responsive img-circle")
-                        .col-xs-12.col-sm-9
-                          %span.name
-                            =user.name
-                          %br/
-                          %span
-                            =user.address
-                          %br/
-                          %span
-                            =user.phone
-                          %br/
-                          %span
-                            =user.email
-                          %br/
-                        .clearfix
-
-                .col-xs-12.col-sm-4.list-map
-                =image_tag("map.png", size:"400x400", class:"img-responsive")
+                    = render @dog_sitters
 
           #caticon.tab-pane.fade{:role => "tabpanel"}
             .container.tab-inner
               .row.form-group
                 .col-xs-12.col-sm-6
                   %ul#contact-list.list-group
-                    %li.list-group-item
-                      .col-xs-12.col-sm-3
-                        %img.img-responsive.img-circle{:alt => "Todd Shelton", :src => "http://api.randomuser.me/portraits/men/24.jpg"}/
-                      .col-xs-12.col-sm-9
-                        %span.name Todd Shelton
-                        %br/
-                        %span 5133 Pecan Acres Ln
-                        %br/
-                        %span (522) 991-3367
-                        %br/
-                        %span todd.shelton@example.com
-                        %br/
-                      .clearfix
-                    %li.list-group-item
-                      .col-xs-12.col-sm-3
-                        %img.img-responsive.img-circle{:alt => "Rosemary Porter", :src => "http://api.randomuser.me/portraits/women/34.jpg"}/
-                      .col-xs-12.col-sm-9
-                        %span.name Rosemary Porter
-                        %br/
-                        %span 5267 Cackson St
-                        %br/
-                        %span (497) 160-9776
-                        %br/
-                        %span rosemary.porter@example.com
-                        %br/
-                      .clearfix
-                    %li.list-group-item
-                      .col-xs-12.col-sm-3
-                        %img.img-responsive.img-circle{:alt => "Scott Stevens", :src => "http://api.randomuser.me/portraits/men/49.jpg"}/
-                      .col-xs-12.col-sm-9
-                        %span.name
-                          user.name
-                        %br/
-                        %span 5842 Hillcrest Rd
-                        %br/
-                        %span (870) 288-4149
-                        %br/
-                        %span scott.stevens@example.com
-                        %br/
-                      .clearfix
-                    %li.list-group-item
-                      .col-xs-12.col-sm-3
-                        %img.img-responsive.img-circle{:alt => "Seth Frazier", :src => "http://api.randomuser.me/portraits/men/97.jpg"}/
-                      .col-xs-12.col-sm-9
-                        %span.name Seth Frazier
-                        %br/
-                        %span 7396 E North St
-                        %br/
-                        %span (560) 180-4143
-                        %br/
-                        %span seth.frazier@example.com
-                        %br/
-                      .clearfix
-                    %li.list-group-item
-                      .col-xs-12.col-sm-3
-                        %img.img-responsive.img-circle{:alt => "Jean Myers", :src => "http://api.randomuser.me/portraits/women/90.jpg"}/
-                      .col-xs-12.col-sm-9
-                        %span.name Jean Myers
-                        %br/
-                        %span 4949 W Dallas St
-                        %br/
-                        %span (477) 792-2822
-                        %br/
-                        %span jean.myers@example.com
-                        %br/
-                      .clearfix
-                .col-xs-12.col-sm-4.list-map
-                =image_tag("map.png", size:"400x400", class:"img-responsive")
-
+                    = render @cat_sitters
 
           #multiicon.tab-pane.fade{:role => "tabpanel"}
             .container.tab-inner
               .row.form-group
                 .col-xs-12.col-sm-6
                   %ul#contact-list.list-group
-                    %li.list-group-item
-                      .col-xs-12.col-sm-3
-                        %img.img-responsive.img-circle{:alt => "Jean Myers", :src => "http://api.randomuser.me/portraits/women/90.jpg"}/
-                      .col-xs-12.col-sm-9
-                        %span.name Jean Myers
-                        %br/
-                        %span 4949 W Dallas St
-                        %br/
-                        %span (477) 792-2822
-                        %br/
-                        %span jean.myers@example.com
-                        %br/
-                      .clearfix
-                    %li.list-group-item
-                      .col-xs-12.col-sm-3
-                        %img.img-responsive.img-circle{:alt => "Todd Shelton", :src => "http://api.randomuser.me/portraits/men/24.jpg"}/
-                      .col-xs-12.col-sm-9
-                        %span.name Todd Shelton
-                        %br/
-                        %span 5133 Pecan Acres Ln
-                        %br/
-                        %span (522) 991-3367
-                        %br/
-                        %span todd.shelton@example.com
-                        %br/
-                      .clearfix
-                    %li.list-group-item
-                      .col-xs-12.col-sm-3
-                        %img.img-responsive.img-circle{:alt => "Rosemary Porter", :src => "http://api.randomuser.me/portraits/women/34.jpg"}/
-                      .col-xs-12.col-sm-9
-                        %span.name Rosemary Porter
-                        %br/
-                        %span 5267 Cackson St
-                        %br/
-                        %span (497) 160-9776
-                        %br/
-                        %span rosemary.porter@example.com
-                        %br/
-                      .clearfix
-                    %li.list-group-item
-                      .col-xs-12.col-sm-3
-                        %img.img-responsive.img-circle{:alt => "Scott Stevens", :src => "http://api.randomuser.me/portraits/men/49.jpg"}/
-                      .col-xs-12.col-sm-9
-                        %span.name Scott Stevens
-                        %br/
-                        %span 5842 Hillcrest Rd
-                        %br/
-                        %span (870) 288-4149
-                        %br/
-                        %span scott.stevens@example.com
-                        %br/
-                      .clearfix
-                    %li.list-group-item
-                      .col-xs-12.col-sm-3
-                        %img.img-responsive.img-circle{:alt => "Seth Frazier", :src => "http://api.randomuser.me/portraits/men/97.jpg"}/
-                      .col-xs-12.col-sm-9
-                        %span.name Seth Frazier
-                        %br/
-                        %span 7396 E North St
-                        %br/
-                        %span (560) 180-4143
-                        %br/
-                        %span seth.frazier@example.com
-                        %br/
-                      .clearfix
-                .col-xs-12.col-sm-4.list-map
-                =image_tag("map.png", size:"400x400", class:"img-responsive")
-
+                    = render @users
 
 -# .table-responsive
 -#   %table.table.table-striped.table-bordered.table-hover

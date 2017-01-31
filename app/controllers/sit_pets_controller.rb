@@ -50,6 +50,6 @@ class SitPetsController < ApplicationController
   private
     # Only allow a trusted parameter "white list" through.
     def sit_pet_params
-      params.require(:sit_pet).permit(:pet_kind, :breed, :dog_lg, :dog_md, :dog_sm, :cat, :other, :sitter_id)
+      params.require(:sit_pet).permit(:pet_kind, :breed, :size, :user_id)
     end
 end

@@ -3,6 +3,8 @@ class UsersController < ApplicationController
   # GET /users
   def index
     @users = User.all
+    @dog_sitters = User.all.includes(:sit_pets).where("sit_pets.pet_kind": "dog")
+    @cat_sitters = User.all.includes(:sit_pets).where("sit_pets.pet_kind": "cat")
   end
 
   # GET /users/1
@@ -52,6 +54,6 @@ class UsersController < ApplicationController
   private
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:name, :address, :phone, :email, :picture, :about_me, pets_attributes:[:pet_kind, :breed, :dog_lg, :dog_md, :dog_sm, :cat, :other])
+      params.require(:user).permit(:name, :address, :city, :state, :zip, :phone, :email, :picture, :about_me, :backyard, :preferences, pets_attributes:[:pet_kind, :breed, :size])
     end
 end
