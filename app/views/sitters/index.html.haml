@@ -6,20 +6,20 @@
         / Nav tabs
         %ul#nav-tabs.nav.nav-justified{:role => "tablist"}
           %li.active{:role => "presentation"}
-            %a{"aria-controls" => "dustin", "data-toggle" => "tab", :href => "#dustin", :role => "tab"}
+            %a{"aria-controls" => "dustin", "data-toggle" => "tab", :href => "#dogicon", :role => "tab"}
               =image_tag("dogicon.jpg", class:"img-circle", size: "80x80")
 
           %li{:role => "presentation"}
-            %a{"aria-controls" => "daksh", "data-toggle" => "tab", :href => "#daksh", :role => "tab"}
+            %a{"aria-controls" => "daksh", "data-toggle" => "tab", :href => "#caticon", :role => "tab"}
               =image_tag("caticon.jpg", class:"img-circle", size: "80x80")
           %li{:role => "presentation"}
-            %a{"aria-controls" => "anna", "data-toggle" => "tab", :href => "#anna", :role => "tab"}
-              =image_tag("multipet.jpg", class:"img-circle", size: "80x80")
+            %a{"aria-controls" => "anna", "data-toggle" => "tab", :href => "#multiicon", :role => "tab"}
+              =image_tag("multipets.jpg", class:"img-circle", size: "80x80")
               -# %img.img-circle{:src => "https://s3.amazonaws.com/uifaces/faces/twitter/annapickard/128.jpg"}/
 
         / Tab panes
         #tabs-collapse.tab-content
-          #dustin.tab-pane.fade.in.active{:role => "tabpanel"}
+          #dogicon.tab-pane.fade.in.active{:role => "tabpanel"}
             .container.tab-inner
               .row.form-group
                 .col-xs-12.col-sm-6
@@ -92,7 +92,7 @@
                 .col-xs-12.col-sm-4.list-map
                 =image_tag("map.png", size:"400x400", class:"img-responsive")
 
-          #daksh.tab-pane.fade{:role => "tabpanel"}
+          #caticon.tab-pane.fade{:role => "tabpanel"}
             .container.tab-inner
               .row.form-group
                 .col-xs-12.col-sm-6
@@ -166,7 +166,7 @@
                 =image_tag("map.png", size:"400x400", class:"img-responsive")
 
 
-          #anna.tab-pane.fade{:role => "tabpanel"}
+          #multiicon.tab-pane.fade{:role => "tabpanel"}
             .container.tab-inner
               .row.form-group
                 .col-xs-12.col-sm-6

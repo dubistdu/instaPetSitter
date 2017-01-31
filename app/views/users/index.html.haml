@@ -1,36 +1,283 @@
-.page-header
-  = link_to new_user_path, class: 'btn btn-primary' do
-    %span.glyphicon.glyphicon-plus
-    New User
-  %h1 Listing users
 
-.table-responsive
-  %table.table.table-striped.table-bordered.table-hover
-    %thead
-      %tr
-        %th Name
-        %th Address
-        %th Phone
-        %th Email
-        %th Picture
-        %th About me
-        %th{colspan: 3}
+.cat_dog_tab
+  .container.text-center
+    .row
+      .col-md-6.col-md-offset-3{:role => "tabpanel"}
+        / Nav tabs
+        %ul#nav-tabs.nav.nav-justified{:role => "tablist"}
+          %li.active{:role => "presentation"}
+            %a{"aria-controls" => "dustin", "data-toggle" => "tab", :href => "#dogicon", :role => "tab"}
+              =image_tag("dogicon.jpg", class:"img-circle", size: "80x80")
 
-    %tbody
-      - @users.each do |user|
-        %tr
-          %td= user.name
-          %td= user.address
-          %td= user.phone
-          %td= user.email
-          %td= user.picture_id
-          %td= user.about_me
-          %td
-            = link_to user do
-              %span.glyphicon.glyphicon-ok
-          %td
-            = link_to edit_user_path(user) do
-              %span.glyphicon.glyphicon-pencil
-          %td
-            = link_to user, data: { confirm: 'Are you sure?' }, method: :delete do
-              %span.glyphicon.glyphicon-remove
+          %li{:role => "presentation"}
+            %a{"aria-controls" => "daksh", "data-toggle" => "tab", :href => "#caticon", :role => "tab"}
+              =image_tag("caticon.jpg", class:"img-circle", size: "80x80")
+          %li{:role => "presentation"}
+            %a{"aria-controls" => "anna", "data-toggle" => "tab", :href => "#multiicon", :role => "tab"}
+              =image_tag("multipets.jpg", class:"img-circle", size: "80x80")
+              -# %img.img-circle{:src => "https://s3.amazonaws.com/uifaces/faces/twitter/annapickard/128.jpg"}/
+
+        / Tab panes
+        #tabs-collapse.tab-content
+          #dogicon.tab-pane.fade.in.active{:role => "tabpanel"}
+            .container.tab-inner
+              .row.form-group
+                .col-xs-12.col-sm-6
+                  %ul#contact-list.list-group
+                    - @users.each do |user|
+                      %li.list-group-item
+                        .col-xs-12.col-sm-3
+
+                          = link_to user do
+                            -if user.picture.present?
+                              %img
+                                = image_tag attachment_url(user, :picture), size: "100x100", class: "img-responsive img-circle"
+                            -else
+                              = image_tag("dogicon.jpg", size: "100x100", class: "img-responsive img-circle")
+                        .col-xs-12.col-sm-9
+                          %span.name
+                            =user.name
+                          %br/
+                          %span
+                            =user.address
+                          %br/
+                          %span
+                            =user.phone
+                          %br/
+                          %span
+                            =user.email
+                          %br/
+                        .clearfix
+
+                .col-xs-12.col-sm-4.list-map
+                =image_tag("map.png", size:"400x400", class:"img-responsive")
+
+          #caticon.tab-pane.fade{:role => "tabpanel"}
+            .container.tab-inner
+              .row.form-group
+                .col-xs-12.col-sm-6
+                  %ul#contact-list.list-group
+                    %li.list-group-item
+                      .col-xs-12.col-sm-3
+                        %img.img-responsive.img-circle{:alt => "Todd Shelton", :src => "http://api.randomuser.me/portraits/men/24.jpg"}/
+                      .col-xs-12.col-sm-9
+                        %span.name Todd Shelton
+                        %br/
+                        %span 5133 Pecan Acres Ln
+                        %br/
+                        %span (522) 991-3367
+                        %br/
+                        %span todd.shelton@example.com
+                        %br/
+                      .clearfix
+                    %li.list-group-item
+                      .col-xs-12.col-sm-3
+                        %img.img-responsive.img-circle{:alt => "Rosemary Porter", :src => "http://api.randomuser.me/portraits/women/34.jpg"}/
+                      .col-xs-12.col-sm-9
+                        %span.name Rosemary Porter
+                        %br/
+                        %span 5267 Cackson St
+                        %br/
+                        %span (497) 160-9776
+                        %br/
+                        %span rosemary.porter@example.com
+                        %br/
+                      .clearfix
+                    %li.list-group-item
+                      .col-xs-12.col-sm-3
+                        %img.img-responsive.img-circle{:alt => "Scott Stevens", :src => "http://api.randomuser.me/portraits/men/49.jpg"}/
+                      .col-xs-12.col-sm-9
+                        %span.name
+                          user.name
+                        %br/
+                        %span 5842 Hillcrest Rd
+                        %br/
+                        %span (870) 288-4149
+                        %br/
+                        %span scott.stevens@example.com
+                        %br/
+                      .clearfix
+                    %li.list-group-item
+                      .col-xs-12.col-sm-3
+                        %img.img-responsive.img-circle{:alt => "Seth Frazier", :src => "http://api.randomuser.me/portraits/men/97.jpg"}/
+                      .col-xs-12.col-sm-9
+                        %span.name Seth Frazier
+                        %br/
+                        %span 7396 E North St
+                        %br/
+                        %span (560) 180-4143
+                        %br/
+                        %span seth.frazier@example.com
+                        %br/
+                      .clearfix
+                    %li.list-group-item
+                      .col-xs-12.col-sm-3
+                        %img.img-responsive.img-circle{:alt => "Jean Myers", :src => "http://api.randomuser.me/portraits/women/90.jpg"}/
+                      .col-xs-12.col-sm-9
+                        %span.name Jean Myers
+                        %br/
+                        %span 4949 W Dallas St
+                        %br/
+                        %span (477) 792-2822
+                        %br/
+                        %span jean.myers@example.com
+                        %br/
+                      .clearfix
+                .col-xs-12.col-sm-4.list-map
+                =image_tag("map.png", size:"400x400", class:"img-responsive")
+
+
+          #multiicon.tab-pane.fade{:role => "tabpanel"}
+            .container.tab-inner
+              .row.form-group
+                .col-xs-12.col-sm-6
+                  %ul#contact-list.list-group
+                    %li.list-group-item
+                      .col-xs-12.col-sm-3
+                        %img.img-responsive.img-circle{:alt => "Jean Myers", :src => "http://api.randomuser.me/portraits/women/90.jpg"}/
+                      .col-xs-12.col-sm-9
+                        %span.name Jean Myers
+                        %br/
+                        %span 4949 W Dallas St
+                        %br/
+                        %span (477) 792-2822
+                        %br/
+                        %span jean.myers@example.com
+                        %br/
+                      .clearfix
+                    %li.list-group-item
+                      .col-xs-12.col-sm-3
+                        %img.img-responsive.img-circle{:alt => "Todd Shelton", :src => "http://api.randomuser.me/portraits/men/24.jpg"}/
+                      .col-xs-12.col-sm-9
+                        %span.name Todd Shelton
+                        %br/
+                        %span 5133 Pecan Acres Ln
+                        %br/
+                        %span (522) 991-3367
+                        %br/
+                        %span todd.shelton@example.com
+                        %br/
+                      .clearfix
+                    %li.list-group-item
+                      .col-xs-12.col-sm-3
+                        %img.img-responsive.img-circle{:alt => "Rosemary Porter", :src => "http://api.randomuser.me/portraits/women/34.jpg"}/
+                      .col-xs-12.col-sm-9
+                        %span.name Rosemary Porter
+                        %br/
+                        %span 5267 Cackson St
+                        %br/
+                        %span (497) 160-9776
+                        %br/
+                        %span rosemary.porter@example.com
+                        %br/
+                      .clearfix
+                    %li.list-group-item
+                      .col-xs-12.col-sm-3
+                        %img.img-responsive.img-circle{:alt => "Scott Stevens", :src => "http://api.randomuser.me/portraits/men/49.jpg"}/
+                      .col-xs-12.col-sm-9
+                        %span.name Scott Stevens
+                        %br/
+                        %span 5842 Hillcrest Rd
+                        %br/
+                        %span (870) 288-4149
+                        %br/
+                        %span scott.stevens@example.com
+                        %br/
+                      .clearfix
+                    %li.list-group-item
+                      .col-xs-12.col-sm-3
+                        %img.img-responsive.img-circle{:alt => "Seth Frazier", :src => "http://api.randomuser.me/portraits/men/97.jpg"}/
+                      .col-xs-12.col-sm-9
+                        %span.name Seth Frazier
+                        %br/
+                        %span 7396 E North St
+                        %br/
+                        %span (560) 180-4143
+                        %br/
+                        %span seth.frazier@example.com
+                        %br/
+                      .clearfix
+                .col-xs-12.col-sm-4.list-map
+                =image_tag("map.png", size:"400x400", class:"img-responsive")
+
+
+-# .table-responsive
+-#   %table.table.table-striped.table-bordered.table-hover
+-#     %thead
+-#       %tr
+-#         %th Name
+-#         %th Address
+-#         %th City
+-#         %th State
+-#         %th Zipcode
+-#         %th Phone
+-#         %th Email
+-#         %th Lat
+-#         %th Long
+-#         %th Backyard
+-#         %th Preferences
+-#         %th Picture
+-#         %th{colspan: 3}
+-#
+-#     %tbody
+-#       - @sitters.each do |sitter|
+-#         %tr
+-#           %td= sitter.name
+-#           %td= sitter.address
+-#           %td= sitter.city
+-#           %td= sitter.state
+-#           %td= sitter.zipcode
+-#           %td= sitter.phone
+-#           %td= sitter.email
+-#           %td= sitter.lat
+-#           %td= sitter.long
+-#           %td= sitter.backyard
+-#           %td= sitter.preferences
+-#           %td= sitter.picture_id
+-#           %td
+-#             = link_to sitter do
+-#               %span.glyphicon.glyphicon-ok
+-#           %td
+-#             = link_to edit_sitter_path(sitter) do
+-#               %span.glyphicon.glyphicon-pencil
+-#           %td
+-#             = link_to sitter, data: { confirm: 'Are you sure?' }, method: :delete do
+-#               %span.glyphicon.glyphicon-remove
+
+
+-# .page-header
+-#   = link_to new_user_path, class: 'btn btn-primary' do
+-#     %span.glyphicon.glyphicon-plus
+-#     New User
+-#   %h1 Listing users
+-#
+-# .table-responsive
+-#   %table.table.table-striped.table-bordered.table-hover
+-#     %thead
+-#       %tr
+-#         %th Name
+-#         %th Address
+-#         %th Phone
+-#         %th Email
+-#         %th Picture
+-#         %th About me
+-#         %th{colspan: 3}
+-#
+-#     %tbody
+-#       - @users.each do |user|
+-#         %tr
+-#           %td= user.name
+-#           %td= user.address
+-#           %td= user.phone
+-#           %td= user.email
+-#           %td= user.picture_id
+-#           %td= user.about_me
+-#           %td
+-#             = link_to user do
+-#               %span.glyphicon.glyphicon-ok
+-#           %td
+-#             = link_to edit_user_path(user) do
+-#               %span.glyphicon.glyphicon-pencil
+-#           %td
+-#             = link_to user, data: { confirm: 'Are you sure?' }, method: :delete do
+-#               %span.glyphicon.glyphicon-remove
