@@ -10,14 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170131151334) do
+ActiveRecord::Schema.define(version: 20170131153103) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "favorites", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "sitter_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -34,17 +33,14 @@ ActiveRecord::Schema.define(version: 20170131151334) do
   create_table "photos", force: :cascade do |t|
     t.string   "image_id"
     t.integer  "user_id"
-    t.integer  "sitter_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["sitter_id"], name: "index_photos_on_sitter_id", using: :btree
     t.index ["user_id"], name: "index_photos_on_user_id", using: :btree
   end
 
   create_table "ratings", force: :cascade do |t|
     t.integer  "star"
     t.integer  "user_id"
-    t.integer  "sitter_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -103,6 +99,5 @@ ActiveRecord::Schema.define(version: 20170131151334) do
     t.text     "preferences"
   end
 
-  add_foreign_key "photos", "sitters"
   add_foreign_key "photos", "users"
 end
