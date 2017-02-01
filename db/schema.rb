@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170131153103) do
+ActiveRecord::Schema.define(version: 20170201020536) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,6 +97,8 @@ ActiveRecord::Schema.define(version: 20170131153103) do
     t.string   "zip"
     t.boolean  "backyard"
     t.text     "preferences"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_foreign_key "photos", "users"

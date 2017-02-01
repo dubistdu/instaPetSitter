@@ -8,6 +8,9 @@ class User < ApplicationRecord
   attachment :picture
   accepts_nested_attributes_for :pets
 
+  geocoded_by :full_street_address   # can also be an IP address
+  after_validation :geocode          # auto-fetch coordinates
+
   def full_street_address
     [address, city, state, zip].join(", ")
   end

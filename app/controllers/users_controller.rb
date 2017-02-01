@@ -3,8 +3,23 @@ class UsersController < ApplicationController
   # GET /users
   def index
     @users = User.all
-    @dog_sitters = User.all.includes(:sit_pets).where("sit_pets.pet_kind": "dog")
-    @cat_sitters = User.all.includes(:sit_pets).where("sit_pets.pet_kind": "cat")
+    # @dog_sitters = User.all.includes(:sit_pets).where("sit_pets.pet_kind": "dog")
+    # @cat_sitters = User.all.includes(:sit_pets).where("sit_pets.pet_kind": "cat")
+
+    if params[:latitude] && params[:longitude]
+      nearby_users = User.near([params[:latitude], params[:longitude]], 40)
+    else
+      nearby_users = @users
+    end
+
+    @dog_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind": "dog")
+    @cat_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind": "cat")
+
+    # if params[:search].present?
+    #   @locations = Location.near(params[:search], 50, :order => :distance)
+    # else
+    #   @locations = Location.all
+    # end
   end
 
   # GET /users/1
