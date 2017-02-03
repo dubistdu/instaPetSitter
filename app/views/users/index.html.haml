@@ -12,6 +12,9 @@
             %a{"aria-controls" => "cat", "data-toggle" => "tab", :href => "#caticon", :role => "tab"}
               =image_tag("caticon.jpg", class:"img-circle", size: "80x80")
           %li{:role => "presentation"}
+            %a{"aria-controls" => "other", "data-toggle" => "tab", :href => "#othericon", :role => "tab"}
+              =image_tag("other.jpg", class:"img-circle", size: "80x80")
+          %li{:role => "presentation"}
             %a{"aria-controls" => "multi", "data-toggle" => "tab", :href => "#multiicon", :role => "tab"}
               =image_tag("multipet.jpg", class:"img-circle", size: "80x80")
               -# %img.img-circle{:src => "https://s3.amazonaws.com/uifaces/faces/twitter/annapickard/128.jpg"}/
@@ -31,6 +34,13 @@
                 .col-xs-12.col-sm-6
                   %ul#contact-list.list-group
                     = render @cat_sitters
+
+          #othericon.tab-pane.fade{:role => "tabpanel"}
+            .container.tab-inner
+              .row.form-group
+                .col-xs-12.col-sm-6
+                  %ul#contact-list.list-group
+                    = render @other_sitters          
 
           #multiicon.tab-pane.fade{:role => "tabpanel"}
             .container.tab-inner

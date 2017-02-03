@@ -4,10 +4,16 @@ Rails.application.routes.draw do
 
   resources :favorites
   resources :ratings
-  resources :users
+  resources :users do
+    collection do
+      get :search
+      post :results
+    end
+  end
   resources :sitters
   resources :pets
   resources :sit_pets
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get    '/auth/:provider'          => 'omniauth#auth',    as: :auth

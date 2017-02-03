@@ -11,64 +11,88 @@
           %li= msg
 
   .container.auth
-    %h1.text-center
-      User profile
+    %h2.text-center
+      Become A Sitter!
     .big-form.well.auth-box
-      .form-group
-        = f.label :name, class: 'col-sm-2 control-label'
-        .col-sm-10
-          = f.text_field :name, class: 'form-control'
-      .form-group
-        = f.label :address, class: 'col-sm-2 control-label'
-        .col-sm-10
-          = f.text_field :address, class: 'form-control'
-      .form-group
-        = f.label :phone, class: 'col-sm-2 control-label'
-        .col-sm-10
-          = f.text_field :phone, class: 'form-control'
-      .form-group
-        = f.label :email, class: 'col-sm-2 control-label'
-        .col-sm-10
-          = f.text_field :email, class: 'form-control'
-      .form-group
-        = f.label :picture, class: 'col-sm-2 control-label'
-        .col-sm-8
-          = f.attachment_field :picture
-      .form-group
-        = f.label :about_me, class: 'col-sm-2 control-label'
-        .col-sm-10
-          = f.text_area :about_me, class: 'form-control'
+      %form
+        .form-group
+          = f.label :profile, class:'col-sm-2 control-label'
+          .col-sm-5
+            = f.attachment_field :picture
+        .form-group
+          = f.label :name, class: 'col-sm-2 control-label'
+          .col-sm-10
+            = f.text_field :name, class: 'form-control'
+        .form-group
+          = f.label :address, class: 'col-sm-2 control-label'
+          .col-sm-10
+            = f.text_field :address, class: 'form-control'
+        .form-group
+          = f.label :city, class: 'col-sm-1 col-sm-offset-1 control-label'
+          .col-sm-3
+            = f.text_field :city, class: 'form-control'
+          = f.label :state, class: 'col-sm-1 control-label'
+          .col-sm-3
+            = f.text_field :state, class: 'form-control'
+          = f.label :zip, class: 'col-sm-1 control-label'
+          .col-sm-2
+            = f.text_field :zip, class: 'form-control'
+        .form-group
+          = f.label :phone, class: 'col-sm-2 control-label'
+          .col-sm-4
+            = f.text_field :phone, class: 'form-control'
+          = f.label :email, class: 'col-sm-1 control-label'
+          .col-sm-5
+            = f.text_field :email, class: 'form-control'
 
-      = f.fields_for :pets do |pets_form|
         .form-group
-          = pets_form.label :pet_kind, class: 'col-sm-2 control-label'
+          = f.label :backyard, class: 'col-sm-2 control-label'
           .col-sm-10
-            = pets_form.text_field :pet_kind, class: 'form-control'
+            = f.check_box :backyard, class: 'form-control'
         .form-group
-          = pets_form.label :breed, class: 'col-sm-2 control-label'
+          = f.label :preferences, class: 'col-sm-2 control-label'
           .col-sm-10
-            = pets_form.text_field :breed, class: 'form-control'
-        .form-group
-          = pets_form.label :dog_lg, class: 'col-sm-2 control-label'
-          .col-sm-10
-            = pets_form.number_field :dog_lg, class: 'form-control'
-        .form-group
-          = pets_form.label :dog_md, class: 'col-sm-2 control-label'
-          .col-sm-10
-            = pets_form.number_field :dog_md, class: 'form-control'
-        .form-group
-          = pets_form.label :dog_sm, class: 'col-sm-2 control-label'
-          .col-sm-10
-            = pets_form.number_field :dog_sm, class: 'form-control'
-        .form-group
-          = pets_form.label :cat, class: 'col-sm-2 control-label'
-          .col-sm-10
-            = pets_form.number_field :cat, class: 'form-control'
-        .form-group
-          = pets_form.label :other, class: 'col-sm-2 control-label'
-          .col-sm-10
-            = pets_form.number_field :other, class: 'form-control'
+            = f.text_area :preferences, class: 'form-control'
 
-      .form-group
-        .col-sm-offset-2.col-sm-10
-          = f.submit class: 'btn btn-primary'
+        %h4.text-center
+          If you have any pets, please fill out the form below
+
+      = f.fields_for :sit_pets do |sit_pets_form|
+
+        .form-group
+          = sit_pets_form.label :breed, class: 'col-sm-2 control-label'
+          .col-sm-10
+            = sit_pets_form.text_field :breed, class: 'form-control'
+        .form-group
+          = sit_pets_form.label :Large_dog_46_to_100_lbs, class: 'col-sm-2 control-label',placeholder: 'How many'
+          .col-sm-2
+            = sit_pets_form.number_field :dog_lg, class: 'form-control'
+          = sit_pets_form.label :Medium_dog_up_to_45_lbs, class: 'col-sm-2 control-label'
+          .col-sm-2
+            = sit_pets_form.number_field :dog_md, class: 'form-control'
+          = sit_pets_form.label :small_dog_up_to_25_lbs , class: 'col-sm-2 control-label'
+          .col-sm-2
+            = sit_pets_form.number_field :dog_sm, class: 'form-control'
+        .form-group
+          = sit_pets_form.label :cat, class: 'col-sm-2 control-label'
+          .col-sm-10
+            = sit_pets_form.number_field :cat, class: 'form-control'
+        .form-group
+          = sit_pets_form.label :other_type, class: 'col-sm-2 control-label'
+          .col-sm-10
+            = sit_pets_form.number_field :other, class: 'form-control'
+
+      -# .form-group
+      -#   %label.control-label{:for => "radios"} Do you have any pets?
+      -#   %div
+      -#     .radio
+      -#       %label{:for => "radios-0"}
+      -#         %input#radios-0{:checked => "checked", :name => "radios", :type => "radio", :value => "1"}/
+      -#         Yes &nbsp
+      -#       %label{:for => "radios-1"}
+      -#         %input#radios-1{:name => "radios", :type => "radio", :value => "2"}/
+      -#         No &nbsp
+
+
+      .form-group.button_center
+        = f.submit class: 'btn btn-default form_submit_btn'

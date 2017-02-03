@@ -16,7 +16,8 @@ gavin = User.create!(name: "Gavin Stark", address: "1121 23rd Ave N", city: "St 
   gavin.sit_pets.create!(pet_kind: "Dog", size:"sm")
   gavin.sit_pets.create!(pet_kind: "Dog", size:"md")
   gavin.sit_pets.create!(pet_kind: "Dog", size:"lg")
-  gavin.sit_pets.create!(pet_kind: "Cat", size:"sm")
+  gavin.sit_pets.create!(pet_kind: "cat")
+  gavin.sit_pets.create!(pet_kind: "other")
 
 angel = User.create!(name: "Angel", address: "1960 72nd Ave NE", city: "St Petersburg", state: "FL", zip: "33702", phone: "(111) 111-1111", email:"Angel@example.com", about_me: "I have no pets", backyard:false, preferences: "house broken pets only", picture: File.open(Rails.root.join("db/seedimages/angel.png")))
   angel.sit_pets.create!(pet_kind: "cat", size:"sm")
@@ -37,7 +38,7 @@ toni = User.create!(name: "Toni", address: "2035 18th Ave S", city: "St Petersbu
   toni.pets.create!(pet_kind:"Dog", breed: "Chihuahua", size: "sm")
 
 miguel = User.create!(name: "Miguel", address: "620 Apalachee Dr NE", city: "St Petersburg", state: "FL", zip: "33702", phone: "(123) 555-5555", email:"Miguel@example.com", backyard:true, picture: File.open(Rails.root.join("db/seedimages/miguel.png")))
-  miguel.pets.create!(pet_kind:"Dog", size: "lg")
+  miguel.pets.create!(pet_kind:"other")
 
 katherine = User.create!(name: "Katherine T", address: "555 5th Ave NE Ste 343,", city: "St Petersburg", state: "FL", zip: "33701", phone: "(666) 333-3333", email:"kat@example.com", about_me: "cat person", backyard:true, picture: File.open(Rails.root.join("db/seedimages/katheryn.png")))
   katherine.pets.create!(pet_kind:"cat", size: "sm")

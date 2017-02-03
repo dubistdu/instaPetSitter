@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  
   has_many :sitters, through: :favorites
   has_many :photos
   has_many :pets

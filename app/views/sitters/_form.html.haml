@@ -36,7 +36,7 @@
             = f.text_field :state, class: 'form-control'
           = f.label :zip, class: 'col-sm-1 control-label'
           .col-sm-2
-            = f.text_field :zipcode, class: 'form-control'
+            = f.text_field :zip, class: 'form-control'
         .form-group
           = f.label :phone, class: 'col-sm-2 control-label'
           .col-sm-4
@@ -55,7 +55,7 @@
             = f.text_area :preferences, class: 'form-control'
 
         %h4.text-center
-          If you have any pets, please fill out the form below
+
 
       = f.fields_for :sit_pets do |sit_pets_form|
 
@@ -97,125 +97,3 @@
       .form-group.button_center
 
         = f.submit class: 'btn btn-default form_submit_btn'
-
-
-  -# .container.auth
-  -#   %h1.text-center
-  -#     Become A Sitter!
-  -#   .big-form.well.auth-box
-  -#     %form
-  -#       .form-group
-  -#         %label.control-label{:for => "filebutton"} Profile Photo
-  -#         %div
-  -#           %input#filebutton.input-file{:name => "picture", :type => "file"}/
-  -#       / Text input
-  -#       .form-group
-  -#         %label.control-label{:for => "textinput"} Name
-  -#         %div
-  -#           %input#textinput.form-control.input-md{:name => "textinput", :placeholder => "Username", :type => "text"}/
-  -#
-  -#       / Address input
-  -#       .form-group
-  -#         %label.control-label{:for => "addressinput"} Address
-  -#         %div
-  -#           %input#passwordinput.form-control.input-md{:name => "address", :placeholder => "Address", :type => "text"}/
-  -#
-  -#       .form-group
-  -#         %label.control-label{:for => "cityinput"} City
-  -#         %div
-  -#           %input#passwordinput.form-control.input-md{:name => "city", :placeholder => "City", :type => "text"}/
-  -#
-  -#       .form-group
-  -#         %label.control-label{:for => "stateinput"} State
-  -#         %div
-  -#           %input#passwordinput.form-control.input-md{:name => "state", :placeholder => "State", :type => "text"}/
-  -#
-  -#       .form-group
-  -#         %label.control-label{:for => "zipinput"} Zipcode
-  -#         %div
-  -#           %input#passwordinput.form-control.input-md{:name => "zipcode", :placeholder => "Zipcode", :type => "text"}/
-  -#
-  -#       -# / Select Basic
-  -#       -# .form-group
-  -#       -#   %label.control-label{:for => "selectbasic"} Select
-  -#       -#   %div
-  -#       -#     %select#selectbasic.form-control{:name => "selectbasic"}
-  -#       -#       %option{:value => "1"} Option one
-  -#       -#       %option{:value => "2"} Option two
-  -#       / Multiple Radios
-  -#       .form-group
-  -#         %label.control-label{:for => "radios"} Do you have any pets?
-  -#         %div
-  -#           .radio
-  -#             %label{:for => "radios-0"}
-  -#               %input#radios-0{:checked => "checked", :name => "radios", :type => "radio", :value => "1"}/
-  -#               Yes &nbsp
-  -#             %label{:for => "radios-1"}
-  -#               %input#radios-1{:name => "radios", :type => "radio", :value => "2"}/
-  -#               No &nbsp
-  -#
-  -#       / Multiple Checkboxes (inline)
-  -#       .form-group
-  -#         %label.control-label{:for => "checkboxes"} If yes, what type of pets do you have? (Check all that applies)
-  -#         %div
-  -#           %label.checkbox-inline{:for => "checkboxes-0"}
-  -#             %input#checkboxes-0{:name => "checkboxes", :type => "checkbox", :value => "1"}/
-  -#             Dog &nbsp
-  -#           %label.checkbox-inline{:for => "checkboxes-1"}
-  -#             %input#checkboxes-1{:name => "checkboxes", :type => "checkbox", :value => "2"}/
-  -#             Cat &nbsp
-  -#           %label.checkbox-inline{:for => "checkboxes-2"}
-  -#             %input#checkboxes-2{:name => "checkboxes", :type => "checkbox", :value => "3"}/
-  -#             Other
-  -#
-  -#       .form-group
-  -#         %label.control-label{:for => "radios"} Do you have a yard?
-  -#         %div
-  -#           .radio
-  -#             %label{:for => "radios-0"}
-  -#               %input#radios-0{:checked => "checked", :name => "radios", :type => "radio", :value => "1"}/
-  -#               Yes &nbsp
-  -#             %label{:for => "radios-1"}
-  -#               %input#radios-1{:name => "radios", :type => "radio", :value => "2"}/
-  -#               No &nbsp
-  -#
-  -#       .form-group
-  -#         %label.control-label{:for => "textinput"} Maximum number of pets you can sit
-  -#         %div
-  -#           %input#textinput.form-control.input-md{:name => "textinput", :placeholder => "Max", :type => "text"}/
-  -#
-  -#
-  -#       .form-group
-  -#         %label.control-label{:for => "checkboxes"} Type of pet you prefer to sit (Check all that applies)
-  -#         %div
-  -#           %label.checkbox-inline{:for => "checkboxes-0"}
-  -#             %input#checkboxes-0{:name => "checkboxes", :type => "checkbox", :value => "1"}/
-  -#             Dog &nbsp
-  -#           %label.checkbox-inline{:for => "checkboxes-1"}
-  -#             %input#checkboxes-1{:name => "checkboxes", :type => "checkbox", :value => "2"}/
-  -#             Cat &nbsp
-  -#           %label.checkbox-inline{:for => "checkboxes-2"}
-  -#             %input#checkboxes-2{:name => "checkboxes", :type => "checkbox", :value => "3"}/
-  -#             Other
-  -#
-  -#       .form-group
-  -#         %label.control-label{:for => "checkboxes"} Size of dogs you prefer (Check all that applies)
-  -#         %div
-  -#           %label.checkbox-inline{:for => "checkboxes-0"}
-  -#             %input#checkboxes-0{:name => "checkboxes", :type => "checkbox", :value => "1"}/
-  -#             Large (41-100lbs)
-  -#           %label.checkbox-inline{:for => "checkboxes-1"}
-  -#             %input#checkboxes-1{:name => "checkboxes", :type => "checkbox", :value => "2"}/
-  -#             Medium (16-40lbs)
-  -#           %label.checkbox-inline{:for => "checkboxes-2"}
-  -#             %input#checkboxes-2{:name => "checkboxes", :type => "checkbox", :value => "3"}/
-  -#             Small (1-15lbs)
-  -#
-  -#       .form-group
-  -#         %label.control-label{:for => "textinput"} Additional Preferences
-  -#         %input#textinput.form-control.input-md{:name => "textinput", :placeholder => "", :type => "text"}/
-  -#       .form-group.submit
-  -#         %label.control-label{:for => "submit"}
-  -#           %button#singlebutton.btn.btn-default{:name => "submit"} Submit
-  -#
-  -# .clearfix

@@ -12,14 +12,20 @@ class UsersController < ApplicationController
       nearby_users = @users
     end
 
+
+
+
     @dog_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind": "dog")
     @cat_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind": "cat")
-
+    @other_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind": "other")
+    @multi_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind": "other" + "dog" + "cat")
     # if params[:search].present?
     #   @locations = Location.near(params[:search], 50, :order => :distance)
     # else
     #   @locations = Location.all
     # end
+
+
   end
 
   # GET /users/1
@@ -57,6 +63,39 @@ class UsersController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def search
+  end
+
+  def results
+    @users = User.all
+
+    location = [params[:city], params[:state], params[:zip]].compact.join(',')
+
+    nearby_users = @users.near(location, 20)
+
+    @dog_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind" => "dog")
+    @cat_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind" => "cat")
+    @other_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind" => "other")
+
+    # also have to limit it by ratings if present
+    # limit by kind of pet if present
+    # limit by size if present
+    # limit by how many ...
+    if params["size-dog"].present?
+      @dog_sitters = @dog_sitters.where("sit_pets.size" => params["size-dog"])
+    end
+
+    if params["size-dog"].present?
+      @dog_sitters = @dog_sitters.where("sit_pets.size" => params["size-dog"])
+    end
+
+    # @multi_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind" => )
+
+    render :results
+ # @restaurants.where(cuisine: params[:cuisine]) if params[:cuisine].present?
+    # render :index # render index page for the serach results. displaying Search results on index page.
   end
 
   # DELETE /users/1

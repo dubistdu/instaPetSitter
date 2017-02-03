@@ -14,12 +14,13 @@
   margin-top: 5%;
   font-family: 'Futura', sans-serif;
 
-  h1 {
+  h2 {
+    text-transform: uppercase;
     color: #fff !important;
     font-weight: 300;
 
     span {
-      font-size: 21px;
+      font-size: 17px;
       display: block;
       padding-top: 20px;
     }
@@ -78,7 +79,7 @@
 
 .auth {
   form {
-    font-weight: 300 !important;
+    font-weight: 1 !important;
     input {
       &[type="text"], &[type="password"], &[type="email"], &[type="search"] {
         border: none;
@@ -86,7 +87,7 @@
         background-color: rgba(255, 255, 255, 0) !important;
         background: rgba(255, 255, 255, 0);
         color: #4c5565;
-        font-size: 16px;
+        font-size: 1em;
         border-bottom: 1px dotted #4c5565;
         border-radius: 0;
         box-shadow: none !important;
@@ -107,7 +108,7 @@
   }
   form label {
     color: #4c5565;
-    font-size: 21px;
+    font-size: 1em;
     font-weight: 300;
   }
   .radio label, label.radio-inline, .checkbox label, label.checkbox-inline {
@@ -136,7 +137,7 @@
   }
   form {
     .btn {
-      background: none;
+      // background: none;
       -webkit-transition: background 0.2s ease-in-out;
       -moz-transition: background 0.2s ease-in-out;
       -ms-transition: background 0.2s ease-in-out;
@@ -163,7 +164,7 @@
     }
   }
   label.label-floatlabel {
-    font-weight: 300;
+    font-weight: 1;
     font-size: 11px;
     color: #fff;
     left: 0 !important;

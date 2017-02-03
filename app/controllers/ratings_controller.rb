@@ -1,7 +1,8 @@
 class RatingsController < ApplicationController
   # GET /ratings
   def index
-    @ratings = Rating.all
+    @ratings = Star.all
+    @ratings = @ratings.where(star: params[:star]) if params[:star].present?
   end
 
   # GET /ratings/1
