@@ -12,19 +12,15 @@ class UsersController < ApplicationController
       nearby_users = @users
     end
 
-
-
-
-    @dog_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind": "dog")
-    @cat_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind": "cat")
-    @other_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind": "other")
-    @multi_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind": "other" + "dog" + "cat")
+    @dog_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind" => "dog")
+    @cat_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind" => "cat")
+    @other_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind" => "other")
+    @multi_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind" => ["other", "dog", "cat"])
     # if params[:search].present?
     #   @locations = Location.near(params[:search], 50, :order => :distance)
     # else
     #   @locations = Location.all
     # end
-
 
   end
 
@@ -70,6 +66,9 @@ class UsersController < ApplicationController
 
   def results
     @users = User.all
+    if params[:ratings].present?
+      @users = @users.includes(:ratings).where("ratings.star" => params[:ratings])
+    end
 
     location = [params[:city], params[:state], params[:zip]].compact.join(',')
 
@@ -79,17 +78,21 @@ class UsersController < ApplicationController
     @cat_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind" => "cat")
     @other_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind" => "other")
 
+    @multi_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind" => ["other", "dog", "cat"])
     # also have to limit it by ratings if present
     # limit by kind of pet if present
     # limit by size if present
     # limit by how many ...
-    if params["size-dog"].present?
-      @dog_sitters = @dog_sitters.where("sit_pets.size" => params["size-dog"])
+
+
+    if params[:sit_pets].present?
+      @dog_sittes = @dog_sitters.
+    if params[:size_dog].present?
+      @dog_sitters = @dog_sitters.where("sit_pets.size" => params[:size_dog])
     end
 
-    if params["size-dog"].present?
-      @dog_sitters = @dog_sitters.where("sit_pets.size" => params["size-dog"])
-    end
+
+
 
     # @multi_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind" => )
 
@@ -110,4 +113,5 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :address, :city, :state, :zip, :phone, :email, :picture, :about_me, :backyard, :preferences, pets_attributes:[:pet_kind, :breed, :size])
     end
+
 end

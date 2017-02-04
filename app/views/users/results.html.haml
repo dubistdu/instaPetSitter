@@ -2,4 +2,12 @@
   .row.form-group
     .col-xs-12.col-sm-6
       %ul#contact-list.list-group
+        %li.list-group-item
+          CATS
+        = render @cat_sitters
+        %li.list-group-item
+          DOGS
         = render @dog_sitters
+        %li.list-group-item
+          OTHER
+        = render @other_sitters
