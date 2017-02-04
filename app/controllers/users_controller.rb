@@ -70,7 +70,12 @@ class UsersController < ApplicationController
       @users = @users.includes(:ratings).where("ratings.star" => params[:ratings])
     end
 
+  if (params[:city] && params[:state]) == nil|| params[:zip] == nil
+    redirect_to @user, notice: 'Please enter City and State or Zip code to search for sitters'
+  else
     location = [params[:city], params[:state], params[:zip]].compact.join(',')
+  end
+
 
     nearby_users = @users.near(location, 20)
 
@@ -79,25 +84,17 @@ class UsersController < ApplicationController
     @other_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind" => "other")
 
     @multi_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind" => ["other", "dog", "cat"])
-    # also have to limit it by ratings if present
+
     # limit by kind of pet if present
     # limit by size if present
     # limit by how many ...
 
-
-    if params[:sit_pets].present?
-      @dog_sittes = @dog_sitters.
     if params[:size_dog].present?
       @dog_sitters = @dog_sitters.where("sit_pets.size" => params[:size_dog])
     end
 
-
-
-
-    # @multi_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind" => )
-
     render :results
- # @restaurants.where(cuisine: params[:cuisine]) if params[:cuisine].present?
+
     # render :index # render index page for the serach results. displaying Search results on index page.
   end
 

@@ -30,15 +30,13 @@
         #navbar.collapse.navbar-collapse
           %ul.nav.navbar-nav.pull-right.menu_cap
             %li.menu
-              = link_to "Search", search_users_path # This will have two options like the cover page and lead to either
+              = link_to "Search Sitters", search_users_path # This will have two options like the cover page and lead to either
             %li
-              = link_to "Sitters", users_path
+              = link_to "Nearby Sitters", users_path
             %li
               = link_to "Become A Sitter", new_user_path
             %li.menu
               = link_to "Paw Necessities", ""
-            %li.menu
-              = link_to "Sign up", "#"
 
             - if logged_in?
               %li.menu
