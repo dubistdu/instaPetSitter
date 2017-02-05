@@ -16,11 +16,6 @@ class UsersController < ApplicationController
     @cat_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind" => "cat")
     @other_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind" => "other")
     @multi_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind" => ["other", "dog", "cat"])
-    # if params[:search].present?
-    #   @locations = Location.near(params[:search], 50, :order => :distance)
-    # else
-    #   @locations = Location.all
-    # end
 
   end
 
@@ -70,13 +65,28 @@ class UsersController < ApplicationController
       @users = @users.includes(:ratings).where("ratings.star" => params[:ratings])
     end
 
-  if (params[:city] && params[:state]) == nil|| params[:zip] == nil
-    redirect_to @user, notice: 'Please enter City and State or Zip code to search for sitters'
+  if (params[:city].blank? || params[:state].blank?) && params[:zip].blank?
+    redirect_to search_users_path, :flash => { :notice => 'Please enter City and State or Zip code to search for sitters' }
+    return
   else
     location = [params[:city], params[:state], params[:zip]].compact.join(',')
   end
+  #
+  if params[:size_dog].present?
+    @users = @users.includes(:sit_pets).where("sit_pets.size" => params[:size_dog])
+  end
 
-
+  # if params[:sit_pets].present?
+  #   @dog_sitters = @users.includes(:sit_pets).where("sit_pets.pet_kind" => "dog")
+  # end
+  #
+  # if params[:sit_pet].present?
+  #   @cat_sitters = @users.includes(:sit_pets).where("sit_pets.pet_kind" => "cat")
+  # end
+  #
+  # if params[:sit_pet].present?
+  #   @other_sitters = @users.includes(:sit_pets).where("sit_pets.pet_kind" => "other")
+  # end
     nearby_users = @users.near(location, 20)
 
     @dog_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind" => "dog")
@@ -84,14 +94,15 @@ class UsersController < ApplicationController
     @other_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind" => "other")
 
     @multi_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind" => ["other", "dog", "cat"])
-
-    # limit by kind of pet if present
-    # limit by size if present
-    # limit by how many ...
-
-    if params[:size_dog].present?
-      @dog_sitters = @dog_sitters.where("sit_pets.size" => params[:size_dog])
-    end
+    #
+    # if params[:sit_pet].present?
+    #   @dog_sitters = @dog_sitters.where("sit_pets.pet_kind" => params[:sit_pet])
+    # end
+    # # limit by how many ...
+    #
+    # if params[:size_dog].present?
+    #   @dog_sitters = @dog_sitters.where("sit_pets.size" => params[:size_dog])
+    # end
 
     render :results
 

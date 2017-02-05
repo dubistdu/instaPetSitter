@@ -19,10 +19,12 @@
 @import 'bootstrap-social';
 @import url("https://fonts.googleapis.com/css?family=Sue+Ellen+Francisco|Futura");
 
+
 nav.navbar.navbar-inverse.navbar-fixed-top.jasmine {
   background-color: #4ABDAC;
   margin-bottom: 0;
-  padding-bottom: 0;
+  padding-top: 5px;
+  padding-bottom: 5px;
   border: none;
   a {
     color: white;
@@ -31,15 +33,27 @@ nav.navbar.navbar-inverse.navbar-fixed-top.jasmine {
 
 }
 
+.navbar-brand {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    text-align: center;
+    margin: auto;
+}
+.navbar-toggle {
+    z-index:3;
+}
+
 // #BFD8D2
 
-.jasmine {
-margin-bottom: 0;
-padding-bottom: 0;
-}
+
 //**************************dropdpwn login********************************
 
 
+.col-md-12.login-via {
+  background-color: none;
+}
 #login-dp{
     min-width: 250px;
     padding: 14px 14px 0;

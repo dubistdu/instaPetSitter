@@ -4,7 +4,11 @@ body {
 }
 
 //******************** Nav bar *************************************
+.logo-wel {
+  margin-top: -0.6%;
+  margin-left: 5px;
 
+}
 .menu_cap {
   text-transform: uppercase;
 }
@@ -17,6 +21,8 @@ nav.navbar {
 
 }
 nav.navbar.transparent.navbar-inverse {
+  padding-top: 5px;
+  padding-bottom: 5px;
 
   a{
   color: white;

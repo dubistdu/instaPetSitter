@@ -1,6 +1,4 @@
-.formback {
 
-}
 .formback.search {
   background: image-url("formback2.jpg");
   background-size: 200%;
@@ -9,12 +7,14 @@
   // font-family: 'Open Sans', sans-serif;
   padding-bottom: 40px;
   // background-color: #dbc394;
-  margin-top: -35px;;
+  padding-top: 7%;
+  margin-top: -8%;
 }
 
 .container.auth.search {
   padding-top: 25px;
   h1 {
+    color: #555f6e;
     padding-bottom: 10px;
 
   }
@@ -24,4 +24,10 @@
   label {
 
   }
+}
+
+.select.star {
+  select#ratings {
+  color: gray !important;
+}
 }

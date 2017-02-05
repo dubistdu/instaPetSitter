@@ -18,22 +18,22 @@
     = csrf_meta_tags
   %body
     %nav.navbar.navbar-inverse.navbar-fixed-top.jasmine{role: "navigation"}
-      .container
+      .container-fluid
         .navbar-header
           %button.navbar-toggle.collapsed{type: "button", data: {toggle: "collapse", target: "#navbar"}, aria: {expanded: "false", controls: "navbar"} }
             %span.sr-only Toggle navigation
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          = link_to root_path, class: "navbar-brand" do
-            INSTA PAW SITTER
+        = link_to root_path, class: "navbar-brand" do
+          = image_tag("logoCap.png", size: '275x35', class: "logo-wel")
         #navbar.collapse.navbar-collapse
-          %ul.nav.navbar-nav.pull-right.menu_cap
+          %ul.nav.navbar-nav.navbar-right.menu_cap
             %li.menu
               = link_to "Search Sitters", search_users_path # This will have two options like the cover page and lead to either
-            %li
+            %li.menu
               = link_to "Nearby Sitters", users_path
-            %li
+            %li.menu
               = link_to "Become A Sitter", new_user_path
             %li.menu
               = link_to "Paw Necessities", ""
@@ -43,7 +43,7 @@
                 = link_to "SIGN OUT", logout_path
             - else
 
-              %li.dropdown
+              %li.dropdown.menu
                 %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
                   Signin
                   %span.caret
@@ -72,4 +72,4 @@
         %span{aria: {hidden: "true"} } &times;
         %span.sr-only Close
       = msg
-  = yield
+= yield
