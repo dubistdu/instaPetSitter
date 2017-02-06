@@ -13,8 +13,8 @@ class UsersController < ApplicationController
     @dog_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind" => "dog")
     @cat_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind" => "cat")
     @other_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind" => "other")
-    @multi_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind" => ["other", "dog", "cat"])
-
+    @multi_sitters = @dog_sitters & @cat_sitters & @other_sitters
+    # ^^^ Can not write ruby code in squel (line 1-3) The way to write ruby code is line4
   end
 
   # GET /users/1
@@ -79,23 +79,6 @@ class UsersController < ApplicationController
     # Limit the search to only the kinds of pets the user checked
     @users = @users.includes(:sit_pets).where("sit_pets.pet_kind" => params[:pet_kind])
 
-
-    # if params[:cat].present?
-    #   @users = @users.includes(:sit_pets).where("sit_pets.pet_kind" => params[:cat])
-    # end
-    #
-    # if params[:other].present?
-    #   @users = @users.includes(:sit_pets).where("sit_pets.pet_kind" => params[:other])
-    # end
-
-
-
-
-
-
-
-
-
     # All other work is done, finally just find the nearby users
     nearby_users = @users.near(location, 20)
 
@@ -103,17 +86,8 @@ class UsersController < ApplicationController
     @dog_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind" => "dog")
     @cat_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind" => "cat")
     @other_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind" => "other")
-    @multi_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind" => ["other", "dog", "cat"])
+    @multi_sitters = @dog_sitters & @cat_sitters & @other_sitters
 
-    #
-    # if params[:sit_pet].present?
-    #   @dog_sitters = @dog_sitters.where("sit_pets.pet_kind" => params[:sit_pet])
-    # end
-    # # limit by how many ...
-    #
-    # if params[:size_dog].present?
-    #   @dog_sitters = @dog_sitters.where("sit_pets.size" => params[:size_dog])
-    # end
 
     render :results
 

@@ -50,16 +50,16 @@
         .how-many-dogs-to-sit
           .btn-group{"data-toggle" => "buttons"}
             %label.btn.btn-default.col-xs-3
-              = radio_button_tag("number", "0")
+              = radio_button_tag(:dnum, "0")
               0
             %label.btn.btn-default.col-xs-3
-              = radio_button_tag("number", "1")
+              = radio_button_tag(:dnum, "1")
               1
             %label.btn.btn-default.col-xs-3
-              = radio_button_tag("number", "2")
+              = radio_button_tag(:dnum, "2")
               2
             %label.btn.btn-default.col-xs-3
-              = radio_button_tag("number", "3+")
+              = radio_button_tag(:dnum, "3+")
               3+
 
       .form-group
@@ -67,16 +67,16 @@
         .how-many-cats-to-sit
           .btn-group{"data-toggle" => "buttons"}
             %label.btn.btn-default.col-xs-3
-              = radio_button_tag("number", "0")
+              = radio_button_tag(:cnum, "0")
               0
             %label.btn.btn-default.col-xs-3
-              = radio_button_tag("number", "1")
+              = radio_button_tag(:cnum, "1")
               1
             %label.btn.btn-default.col-xs-3
-              = radio_button_tag("number", "2")
+              = radio_button_tag(:cnum, "2")
               2
             %label.btn.btn-default.col-xs-3
-              = radio_button_tag("number", "3+")
+              = radio_button_tag(:cnum, "3+")
               3+
 
       .form-group
@@ -84,16 +84,16 @@
         .how-many-other-to-sit
           .btn-group{"data-toggle" => "buttons"}
             %label.btn.btn-default.col-xs-3
-              = radio_button_tag("number", "0")
+              = radio_button_tag(:onum, "0")
               0
             %label.btn.btn-default.col-xs-3
-              = radio_button_tag("number", "1")
+              = radio_button_tag(:onum, "1")
               1
             %label.btn.btn-default.col-xs-3
-              = radio_button_tag("number", "2")
+              = radio_button_tag(:onum, "2")
               2
             %label.btn.btn-default.col-xs-3
-              = radio_button_tag("number", "3+")
+              = radio_button_tag(:onum, "3+")
               3+
 
       .form-group.submit
