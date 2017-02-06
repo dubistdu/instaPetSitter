@@ -3,8 +3,6 @@ class UsersController < ApplicationController
   # GET /users
   def index
     @users = User.all
-    # @dog_sitters = User.all.includes(:sit_pets).where("sit_pets.pet_kind": "dog")
-    # @cat_sitters = User.all.includes(:sit_pets).where("sit_pets.pet_kind": "cat")
 
     if params[:latitude] && params[:longitude]
       nearby_users = User.near([params[:latitude], params[:longitude]], 40)
@@ -46,6 +44,8 @@ class UsersController < ApplicationController
     end
   end
 
+
+
   # PATCH/PUT /users/1
   def update
     @user = User.find(params[:id])
@@ -65,35 +65,46 @@ class UsersController < ApplicationController
       @users = @users.includes(:ratings).where("ratings.star" => params[:ratings])
     end
 
-  if (params[:city].blank? || params[:state].blank?) && params[:zip].blank?
-    redirect_to search_users_path, :flash => { :notice => 'Please enter City and State or Zip code to search for sitters' }
-    return
-  else
-    location = [params[:city], params[:state], params[:zip]].compact.join(',')
-  end
-  #
-  if params[:size_dog].present?
-    @users = @users.includes(:sit_pets).where("sit_pets.size" => params[:size_dog])
-  end
+    if (params[:city].blank? || params[:state].blank?) && params[:zip].blank?
+      redirect_to search_users_path, :flash => { :notice => "Please enter City and State or Zip code to search for sitter" }
+      return
+    else
+      location = [params[:city], params[:state], params[:zip]].compact.join(',')
+    end
 
-  # if params[:sit_pets].present?
-  #   @dog_sitters = @users.includes(:sit_pets).where("sit_pets.pet_kind" => "dog")
-  # end
-  #
-  # if params[:sit_pet].present?
-  #   @cat_sitters = @users.includes(:sit_pets).where("sit_pets.pet_kind" => "cat")
-  # end
-  #
-  # if params[:sit_pet].present?
-  #   @other_sitters = @users.includes(:sit_pets).where("sit_pets.pet_kind" => "other")
-  # end
+    if params[:size_dog].present?
+      @users = @users.includes(:sit_pets).where("sit_pets.size" => params[:size_dog])
+    end
+
+    # Limit the search to only the kinds of pets the user checked
+    @users = @users.includes(:sit_pets).where("sit_pets.pet_kind" => params[:pet_kind])
+
+
+    # if params[:cat].present?
+    #   @users = @users.includes(:sit_pets).where("sit_pets.pet_kind" => params[:cat])
+    # end
+    #
+    # if params[:other].present?
+    #   @users = @users.includes(:sit_pets).where("sit_pets.pet_kind" => params[:other])
+    # end
+
+
+
+
+
+
+
+
+
+    # All other work is done, finally just find the nearby users
     nearby_users = @users.near(location, 20)
 
+    # All work is done and we have nearby users, so split them into groups
     @dog_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind" => "dog")
     @cat_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind" => "cat")
     @other_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind" => "other")
-
     @multi_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind" => ["other", "dog", "cat"])
+
     #
     # if params[:sit_pet].present?
     #   @dog_sitters = @dog_sitters.where("sit_pets.pet_kind" => params[:sit_pet])

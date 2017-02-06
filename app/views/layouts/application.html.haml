@@ -16,7 +16,7 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
-  %body
+  %body{class: "controller-#{controller_name} action-#{action_name}"}
     %nav.navbar.navbar-inverse.navbar-fixed-top.jasmine{role: "navigation"}
       .container-fluid
         .navbar-header
@@ -26,7 +26,7 @@
             %span.icon-bar
             %span.icon-bar
         = link_to root_path, class: "navbar-brand" do
-          = image_tag("logoCap.png", size: '275x35', class: "logo-wel")
+          = image_tag("logoCap2.png", size: '275x35', class: "logo-wel")
         #navbar.collapse.navbar-collapse
           %ul.nav.navbar-nav.navbar-right.menu_cap
             %li.menu

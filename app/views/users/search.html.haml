@@ -1,104 +1,102 @@
-.formback.search
-  %p.notice= flash[:notice]
-  .container.auth.search
-    %h1.text-center
-      Find A Sitter
-    .big-form.well.auth-box.search
-      = form_tag(results_users_path, method: "POST") do
-        .form-group
-          = label_tag(:city, "Search by City:" )
-          = text_field_tag(:city)
-          = label_tag(:state, "and State:")
-          = text_field_tag(:state)
-        .form-group
-          = label_tag(:zip, "Search by Zipcode:")
-          = text_field_tag(:zip)
-          -# = submit_tag("Search")
+-# %p.notice= flash[:notice]
+.container.auth.search
+  %h2.text-center
+    Find A Sitter
+  .big-form.well.auth-box.search
+    = form_tag(results_users_path, method: "POST") do
+      .form-group
+        = label_tag(:city, "Search by City:" )
+        = text_field_tag(:city)
+        = label_tag(:state, "and State:")
+        = text_field_tag(:state)
+      .form-group
+        = label_tag(:zip, "Search by Zipcode:")
+        = text_field_tag(:zip)
+        -# = submit_tag("Search")
 
-        .form-group
-          = label_tag(:ratings, "Search by Ratings:")
-          .select.star
-            = select_tag(:ratings, options_for_select([["ANY",""],["⭐⭐⭐⭐⭐", 5], ["⭐⭐⭐⭐", 4], ["⭐⭐⭐", 3], ["⭐⭐", 2], ["⭐", 1]]))
-        .form-group
-          = label_tag(:sit_pet, "What kind of pet do you have?:")
-          .check_box_grp
-            = check_box_tag(:dog)
-            = label_tag(:dog, "Dog")
-            = check_box_tag(:cat)
-            = label_tag(:cat, "Cat")
-            = check_box_tag(:other)
-            = label_tag(:other, "Other")
+      .form-group
+        = label_tag(:ratings, "Search by Ratings:")
+        .select.star
+          = select_tag(:ratings, options_for_select([["ANY",""],["⭐⭐⭐⭐⭐", 5], ["⭐⭐⭐⭐", 4], ["⭐⭐⭐", 3], ["⭐⭐", 2], ["⭐", 1]]))
+      .form-group
+        = label_tag(:sit_pet, "What kind of pet do you have?:")
+        .check_box_grp
+          = check_box_tag("pet_kind[]", "dog")
+          = label_tag(:pet_kind, "Dog")
+          = check_box_tag("pet_kind[]", "cat")
+          = label_tag(:pet_kind, "Cat")
+          = check_box_tag("pet_kind[]", "other")
+          = label_tag(:pet_kind, "Other")
 
+      .form-group
+        = label_tag(:pet, "What size dogs do you have?:")
+        .what-size-dog
+          .btn-group{"data-toggle" => "buttons"}
+            %label.btn.btn-default.col-xs-6.col-sm-3
+              = check_box_tag("size_dog[]", "sm")
+              sm (< 25lbs)
+            %label.btn.btn-default.col-xs-6.col-sm-3
+              = check_box_tag("size_dog[]", "md")
+              md (26-45lbs)
+            %label.btn.btn-default.col-xs-6.col-sm-3
+              = check_box_tag("size_dog[]", "lg")
+              lg (46-100lbs)
+            %label.btn.btn-default.col-xs-6.col-sm-3
+              = check_box_tag("size_dog[]", "giant")
+              giant (100lbs +)
 
-        .form-group
-          = label_tag(:pet, "What size dogs do you have?:")
-          .what-size-dog
-            .btn-group{"data-toggle" => "buttons"}
-              %label.btn.btn-default.col-xs-6.col-sm-3
-                = check_box_tag("size_dog[]", "sm")
-                sm (< 25lbs)
-              %label.btn.btn-default.col-xs-6.col-sm-3
-                = check_box_tag("size_dog[]", "md")
-                md (26-45lbs)
-              %label.btn.btn-default.col-xs-6.col-sm-3
-                = check_box_tag("size_dog[]", "lg")
-                lg (46-100lbs)
-              %label.btn.btn-default.col-xs-6.col-sm-3
-                = check_box_tag("size_dog[]", "giant")
-                giant (100lbs +)
+      .form-group
+        = label_tag(:many_dog, "How many dogs do you need to sit?:")
+        .how-many-dogs-to-sit
+          .btn-group{"data-toggle" => "buttons"}
+            %label.btn.btn-default.col-xs-3
+              = radio_button_tag("number", "0")
+              0
+            %label.btn.btn-default.col-xs-3
+              = radio_button_tag("number", "1")
+              1
+            %label.btn.btn-default.col-xs-3
+              = radio_button_tag("number", "2")
+              2
+            %label.btn.btn-default.col-xs-3
+              = radio_button_tag("number", "3+")
+              3+
 
-        .form-group
-          = label_tag(:many_dog, "How many dogs do you need to sit?:")
-          .how-many-dogs-to-sit
-            .btn-group{"data-toggle" => "buttons"}
-              %label.btn.btn-default.col-xs-3
-                = radio_button_tag("number", "0")
-                0
-              %label.btn.btn-default.col-xs-3
-                = radio_button_tag("number", "1")
-                1
-              %label.btn.btn-default.col-xs-3
-                = radio_button_tag("number", "2")
-                2
-              %label.btn.btn-default.col-xs-3
-                = radio_button_tag("number", "3+")
-                3+
+      .form-group
+        = label_tag(:many_cat, "How many cats do you need to sit?:")
+        .how-many-cats-to-sit
+          .btn-group{"data-toggle" => "buttons"}
+            %label.btn.btn-default.col-xs-3
+              = radio_button_tag("number", "0")
+              0
+            %label.btn.btn-default.col-xs-3
+              = radio_button_tag("number", "1")
+              1
+            %label.btn.btn-default.col-xs-3
+              = radio_button_tag("number", "2")
+              2
+            %label.btn.btn-default.col-xs-3
+              = radio_button_tag("number", "3+")
+              3+
 
-        .form-group
-          = label_tag(:many_cat, "How many cats do you need to sit?:")
-          .how-many-cats-to-sit
-            .btn-group{"data-toggle" => "buttons"}
-              %label.btn.btn-default.col-xs-3
-                = radio_button_tag("number", "0")
-                0
-              %label.btn.btn-default.col-xs-3
-                = radio_button_tag("number", "1")
-                1
-              %label.btn.btn-default.col-xs-3
-                = radio_button_tag("number", "2")
-                2
-              %label.btn.btn-default.col-xs-3
-                = radio_button_tag("number", "3+")
-                3+
+      .form-group
+        = label_tag(:many_other, "How many other animals do you need to sit?:")
+        .how-many-other-to-sit
+          .btn-group{"data-toggle" => "buttons"}
+            %label.btn.btn-default.col-xs-3
+              = radio_button_tag("number", "0")
+              0
+            %label.btn.btn-default.col-xs-3
+              = radio_button_tag("number", "1")
+              1
+            %label.btn.btn-default.col-xs-3
+              = radio_button_tag("number", "2")
+              2
+            %label.btn.btn-default.col-xs-3
+              = radio_button_tag("number", "3+")
+              3+
 
-        .form-group
-          = label_tag(:many_other, "How many other animals do you need to sit?:")
-          .how-many-other-to-sit
-            .btn-group{"data-toggle" => "buttons"}
-              %label.btn.btn-default.col-xs-3
-                = radio_button_tag("number", "0")
-                0
-              %label.btn.btn-default.col-xs-3
-                = radio_button_tag("number", "1")
-                1
-              %label.btn.btn-default.col-xs-3
-                = radio_button_tag("number", "2")
-                2
-              %label.btn.btn-default.col-xs-3
-                = radio_button_tag("number", "3+")
-                3+
+      .form-group.submit
+        = button_tag "Search", class: 'btn btn-default'
 
-        .form-group.submit
-          = button_tag "Search", class: 'btn btn-default'
-
-  .clearfix
+.clearfix

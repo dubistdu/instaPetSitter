@@ -18,6 +18,7 @@
     text-transform: uppercase;
     color: #555f6e !important;
     font-weight: 300;
+    font-family: 'Noto Serif', serif !important;
 
     span {
       font-size: 17px;
@@ -31,6 +32,9 @@
       border: none;
       font-weight: 300;
       font-size: 24px;
+    }
+    label {
+      color:#444c58;
     }
     background-color: #fff;
     max-width: 700px;
@@ -109,7 +113,7 @@
   form label {
     color: #4c5565;
     font-size: 1em;
-    font-weight: 300;
+    // font-weight: 300;
   }
   .radio label, label.radio-inline, .checkbox label, label.checkbox-inline {
     font-size: 14px;
@@ -163,26 +167,26 @@
       }
     }
   }
-  label.label-floatlabel {
-    font-weight: 1;
-    font-size: 11px;
-    color: #fff;
-    left: 0 !important;
-    top: 1px !important;
-  }
+  // label.label-floatlabel {
+  //   font-weight: 1;
+  //   font-size: 11px;
+  //   color: #fff;
+  //   left: 0 !important;
+  //   top: 1px !important;
+  // }
 }
+  //
+  // .form-group.submit {
+  //   text-align: center;
+  // }
 
-  .form-group.submit {
-    text-align: center;
-  }
-
-.form_submit_btn {
-  border-radius: 50px;
-  background-color: #555f6e;
-  border: white, 2px, solid;
-  color: white;
-  text-align: center;
-}
+// .form_submit_btn {
+//   border-radius: 50px;
+//   background-color: #555f6e;
+//   border: white, 2px, solid;
+//   color: white;
+//   text-align: center;
+// }
 
 .button_center {
   text-align: center;

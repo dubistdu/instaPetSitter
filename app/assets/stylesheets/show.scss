@@ -1,0 +1,49 @@
+
+.page-header.show {
+  border: none;
+}
+
+h2.show {
+  text-align: center;
+}
+.controller-users.action-show {
+  background: image-url("formback.jpg");
+  background-size: 150%;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  font-family: 'Open Sans', sans-serif;
+  padding-bottom: 40px;
+}
+
+.show-case {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  float: right;
+  img {
+    border-radius: 20px;
+    width: 250px;
+    // text-align: center;
+    height:auto;
+  }
+}
+
+
+.profile {
+  padding-top: 5px;
+  dd {
+    font-family: 'Futura', sans-serif;
+    font-size: 1.2em;
+  }
+  dt {
+    // put dd and dt on same row
+    float: left;
+    clear: left;
+    //
+    margin-right: 5px;
+    padding-top: 1px;
+  }
+}
+
+.profile-grp {
+  padding-bottom: 5px;
+}

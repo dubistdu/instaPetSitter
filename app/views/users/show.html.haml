@@ -1,28 +1,85 @@
-.page-header
+
+.page-header.show
+
   = link_to users_path, class: 'btn btn-default' do
-    %span.glyphicon.glyphicon-list-alt
+    %button.btn.btn-large.btn-warning
     Back
-  = link_to edit_user_path(@user), class: 'btn btn-primary' do
-    %span.glyphicon.glyphicon-pencil
-    Edit
-  %h1 Show user
+  -if users_post?
+    = link_to edit_user_path(@user), class: 'btn btn-primary' do
+      %button.btn.btn-large.btn-success
+      Edit
+    = link_to (@user), :method => :delete, :data => { :confirm => 'Are you sure?' } do
+      %button.btn.btn-large.btn-danger
+      Delete
+
 
 %dl.dl-horizontal
-  %dt Name:
-  %dd= @user.name
-  %dt Address:
-  %dd= @user.address
-  %dt Phone:
-  %dd= @user.phone
-  %dt Email:
-  %dd= @user.email
-  %dt Picture:
-  %dd
-    .image-container.img
-    -if @user.picture.present?
-      = image_tag attachment_url(@user, :picture), size: "300x300"
-    -else
-      = image_tag("dogicon.jpg", size: "300x300")
+.container-fluid.auth
+  %h2.show Sitter Profile
+  .row.auth-box.show-background
+    .col-sm-12.show-case
+      .col-sm-6.image-profile
+        .image-container.img.img-responsive
+          -if @user.picture.present?
+            = image_tag attachment_url(@user, :picture)
+          -else
+            = image_tag("dogicon.jpg", size: "250x250")
+      .col-sm-6.profile
+        .profile-grp
+          %dt Name:
+          %dd= @user.name
+        .profile-grp
+          %dt
+          -# %dd= @user.ratings.star
+          %dt Address:
+          %dd= @user.address
+        .profile-grp
+          %dt Phone:
+          %dd= @user.phone
+        .profile-grp
+          %dt Email:
+          %dd= @user.email
+        .profile-grp
+          %dt Backyard:
+          %dd
+          -if @user.backyard == true
+            Yes
+          -else
+            No
+        .profile-grp
+          %h3 About the Sitter's Pet
+        .profile-grp
+          %dt Type:
+          %dd
+            -@user.pets.each do |pet|
+              =pet.pet_kind
+          %dt Breed:
+          %dd
+            -@user.pets.each do |pet|
+              =pet.pet_kind
+          -# -if @user.pets.kind == "dog"
+            %dt Number of Dogs:
 
-  %dt About me:
-  %dd= @user.about_me
+          %dd= @user.name
+        .profile-grp
+          %dt Name:
+          %dd= @user.name
+        .profile-grp
+          %dt About me:
+          %dd= @user.about_me
+        .profile-grp
+          %h3 Pet sitting Preferences
+          %dt Type:
+          -# %dd= @user.pets.kind (do radio button here)
+          %dt Breed:
+          -# %dd= @user.pets.breed
+          -# -if @user.pets.kind == "dog"
+            %dt Number of Dogs:
+
+          %dd= @user.name
+        .profile-grp
+          %dt Name:
+          %dd= @user.name
+        .profile-grp
+          %dt About me:
+          %dd= @user.about_me
