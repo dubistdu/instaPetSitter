@@ -5,7 +5,8 @@ function geoLocate(nearbySitter) {
     localStorage.longitude = position.coords.longitude;
   }
 
-  function error() {
+  function error(positionError) {
+    console.log(positionError)
     nearbySitter.html("Sorry, no gelocation avaialble.")
   }
 
