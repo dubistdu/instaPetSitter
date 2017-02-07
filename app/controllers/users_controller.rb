@@ -15,6 +15,13 @@ class UsersController < ApplicationController
     @other_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind" => "other")
     @multi_sitters = @dog_sitters & @cat_sitters & @other_sitters
     # ^^^ Can not write ruby code in squel (line 1-3) The way to write ruby code is line4
+
+
+    @dogs_lat_and_lng = @dog_sitters.map { |user| { latitude: user.latitude, longitude: user.longitude } }
+    @cats_lat_and_lng  = @cat_sitters.map { |user| { latitude: user.latitude, longitude: user.longitude } }
+    @others_lat_and_lng  = @other_sitters.map { |user| { latitude: user.latitude, longitude: user.longitude } }
+    @multis_lat_and_lng  = @multi_sitters.map { |user| { latitude: user.latitude, longitude: user.longitude } }
+
   end
 
   # GET /users/1
@@ -88,10 +95,12 @@ class UsersController < ApplicationController
     @other_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind" => "other")
     @multi_sitters = @dog_sitters & @cat_sitters & @other_sitters
 
+    @dogs_lat_and_lng = @dog_sitters.map { |user| { latitude: user.latitude, longitude: user.longitude } }
+    @cats_lat_and_lng  = @cat_sitters.map { |user| { latitude: user.latitude, longitude: user.longitude } }
+    @others_lat_and_lng  = @other_sitters.map { |user| { latitude: user.latitude, longitude: user.longitude } }
+    @multis_lat_and_lng  = @multi_sitters.map { |user| { latitude: user.latitude, longitude: user.longitude } }
 
     render :results
-
-    # render :index # render index page for the serach results. displaying Search results on index page.
   end
 
   # DELETE /users/1

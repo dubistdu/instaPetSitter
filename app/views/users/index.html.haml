@@ -27,6 +27,7 @@
                 .col-xs-12.col-sm-6
                   %ul#contact-list.list-group
                     = render @dog_sitters
+                    #dog-map
 
           #caticon.tab-pane.fade{:role => "tabpanel"}
             .container.tab-inner
@@ -34,6 +35,7 @@
                 .col-xs-12.col-sm-6
                   %ul#contact-list.list-group
                     = render @cat_sitters
+                    #cat-map
 
           #othericon.tab-pane.fade{:role => "tabpanel"}
             .container.tab-inner
@@ -41,6 +43,7 @@
                 .col-xs-12.col-sm-6
                   %ul#contact-list.list-group
                     = render @other_sitters
+                    #other-map
 
           #multiicon.tab-pane.fade{:role => "tabpanel"}
             .container.tab-inner
@@ -48,3 +51,78 @@
                 .col-xs-12.col-sm-6
                   %ul#contact-list.list-group
                     = render @multi_sitters
+                    #multi-map
+
+%script{src: "https://maps.googleapis.com/maps/api/js?key=#{ENV["GOOGLE_API_KEY"]}"}
+-# %script{src: "https://maps.googleapis.com/maps/api/js"}
+
+:javascript
+  $(document).on("turbolinks:load", function() {
+    var dogs_lat_and_lng = #{@dogs_lat_and_lng.to_json};
+
+    var dog_map = new google.maps.Map(document.getElementById('dog-map'), {
+                    zoom: 11,
+                    center: new google.maps.LatLng(27.778469, -82.628033),
+                    mapTypeId: 'terrain'
+                  });
+
+    for (var i = 0; i < dogs_lat_and_lng.length; i++) {
+      var latLng = new google.maps.LatLng(dogs_lat_and_lng[i].latitude, dogs_lat_and_lng[i].longitude);
+      var marker = new google.maps.Marker({
+        position: latLng,
+        map: dog_map
+
+      });
+        google.maps.event.addListener(marker, 'click', function() {
+        window.location.href = "/users/:id";
+      });
+    }
+
+    var cats_lat_and_lng = #{@cats_lat_and_lng.to_json};
+
+    var cat_map = new google.maps.Map(document.getElementById('cat-map'), {
+                    zoom: 11,
+                    center: new google.maps.LatLng(27.778469, -82.628033),
+                    mapTypeId: 'terrain'
+                  });
+
+    for (var i = 0; i <cats_lat_and_lng.length; i++) {
+      var latLng = new google.maps.LatLng(cats_lat_and_lng[i].latitude, cats_lat_and_lng[i].longitude);
+      var marker = new google.maps.Marker({
+        position: latLng,
+        map: cat_map
+      });
+    }
+
+    var others_lat_and_lng = #{@others_lat_and_lng.to_json};
+
+    var other_map = new google.maps.Map(document.getElementById('other-map'), {
+                    zoom: 11,
+                    center: new google.maps.LatLng(27.778469, -82.628033),
+                    mapTypeId: 'terrain'
+                  });
+
+    for (var i = 0; i <others_lat_and_lng.length; i++) {
+      var latLng = new google.maps.LatLng(others_lat_and_lng[i].latitude, others_lat_and_lng[i].longitude);
+      var marker = new google.maps.Marker({
+        position: latLng,
+        map: other_map
+      });
+    }
+
+    var multis_lat_and_lng = #{@multis_lat_and_lng.to_json};
+
+    var multi_map = new google.maps.Map(document.getElementById('multi-map'), {
+                    zoom: 11,
+                    center: new google.maps.LatLng(27.778469, -82.628033),
+                    mapTypeId: 'terrain'
+                  });
+
+    for (var i = 0; i <multis_lat_and_lng.length; i++) {
+      var latLng = new google.maps.LatLng(multis_lat_and_lng[i].latitude, multis_lat_and_lng[i].longitude);
+      var marker = new google.maps.Marker({
+        position: latLng,
+        map: multi_map
+      });
+    }
+  })

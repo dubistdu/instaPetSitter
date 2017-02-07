@@ -8,9 +8,32 @@
         %li.list-group-item
           DOGS
         = render @dog_sitters
+        #dog-map
         %li.list-group-item
           OTHER
         = render @other_sitters
         %li.list-group-item
           MULTI
         = render @multi_sitters
+
+-# %script{src: "https://maps.googleapis.com/maps/api/js?key=#{ENV["GOOGLE_API_KEY"]}"}
+-# -# %script{src: "https://maps.googleapis.com/maps/api/js"}
+
+-# :javascript
+-#   $(document).on("turbolinks:load", function() {
+-#     var dogs_lat_and_lng = #{@dogs_lat_and_lng.to_json};
+-#
+-#     var dog_map = new google.maps.Map(document.getElementById('dog-map'), {
+-#                     zoom: 8,
+-#                     center: new google.maps.LatLng(27.778469, -82.628033),
+-#                     mapTypeId: 'terrain'
+-#                   });
+-#
+-#     for (var i = 0; i < dogs_lat_and_lng.length; i++) {
+-#       var latLng = new google.maps.LatLng(dogs_lat_and_lng[i].latitude, dogs_lat_and_lng[i].longitude);
+-#       var marker = new google.maps.Marker({
+-#         position: latLng,
+-#         map: dog_map
+-#       });
+-#     }
+-#   })

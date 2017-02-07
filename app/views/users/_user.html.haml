@@ -14,9 +14,11 @@
       =user.address
     %br/
     %span
-      =user.phone
+      = link_to user.phone, "tel:#{user.phone}"
     %br/
     %span
-      =user.email
+      = link_to user.email, "mailto: #{user.email}"
     %br/
   .clearfix
+
+  #map
