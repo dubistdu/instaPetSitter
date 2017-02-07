@@ -65,8 +65,7 @@
                               Twitter
 
 
-  %video#bgvid
-  = video_tag("french.mp4", :autoplay => true, :playsinline => true, :loop => true, poster: "french.jpg")
+  = video_tag("french.mp4", :autoplay => true, :playsinline => true, :loop => true, poster: "french.jpg", class: "bgvid")
 
   / These scripts are optional if you want click-to-pause
   %script{:src => "http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"}

@@ -6,7 +6,7 @@ body {
 //******************** Nav bar *************************************
 .logo-wel {
   margin-top: -0.6%;
-  margin-left: 5px;
+  // margin-left: 5px;
 
 }
 .menu_cap {
@@ -141,7 +141,7 @@ nav.navbar.transparent.navbar-inverse.navbar-fixed-top {
 }
 
 //********************* video **************************************
-video {
+video.bgvid {
   position: fixed;
   top: 50%;
   left: 50%;
