@@ -1,0 +1,25 @@
+%h4.text-center
+  Please fill out the pet details you prefer to sit
+= f.fields_for :sit_pets do |sit_pets_form|
+  .form-group
+    = sit_pets_form.label :breed, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = sit_pets_form.text_field :breed, class: 'form-control'
+  .form-group
+    = sit_pets_form.label :Large_dog_46_to_100_lbs, class: 'col-sm-2 control-label',placeholder: 'How many'
+    .col-sm-2
+      = sit_pets_form.number_field :dog_lg, class: 'form-control'
+    = sit_pets_form.label :Medium_dog_up_to_45_lbs, class: 'col-sm-2 control-label'
+    .col-sm-2
+      = sit_pets_form.number_field :dog_md, class: 'form-control'
+    = sit_pets_form.label :small_dog_up_to_25_lbs , class: 'col-sm-2 control-label'
+    .col-sm-2
+      = sit_pets_form.number_field :dog_sm, class: 'form-control'
+  .form-group
+    = sit_pets_form.label :cat, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = sit_pets_form.number_field :cat, class: 'form-control'
+  .form-group
+    = sit_pets_form.label :other_type, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = sit_pets_form.number_field :other, class: 'form-control'

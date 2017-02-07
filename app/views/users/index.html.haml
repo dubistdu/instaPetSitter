@@ -86,7 +86,7 @@
 
     // For the map with an id of elementId, make a map
     // for the supplied array of sitters
-    function addSittersToPage(elementId, sitters) {
+    function addSittersToPage(elementId, sitters, userMarkerURL) {
       // Make a map object
       var map = new google.maps.Map(document.getElementById(elementId), {
                       zoom: 11,
@@ -98,8 +98,8 @@
       var latLng = new google.maps.LatLng(latitude, longitude);
       var marker = new google.maps.Marker({
         position: latLng,
-        icon: "https://maps.google.com/mapfiles/kml/shapes/info-i_maps.png",
-        // icon: "#{image_url("caticon.jpg")}",
+         //icon: "https://maps.google.com/mapfiles/kml/shapes/info-i_maps.png",
+         icon: userMarkerURL,
         map: map
       });
 
@@ -125,7 +125,7 @@
 
     // Make the map for dog sitters
     var dog_sitters = #{@dog_sitters.to_json};
-    addSittersToPage('dog-map', dog_sitters)
+    addSittersToPage('dog-map', dog_sitters, "#{image_url("dogmarker.png")}")
 
     // Since we are hiding tabs, only add the map to the page
     // when the tab is shown. Otherwise we get a grey google map
@@ -139,7 +139,7 @@
         // Get the sitters
         var cat_sitters = #{@cat_sitters.to_json};
         // Add them to the map
-        addSittersToPage('cat-map', dog_sitters)
+        addSittersToPage('cat-map', cat_sitters, "#{image_url("catmarker.png")}")
         // Remember that we have added a map for them
         $target.data({hasMap: true})
       }
@@ -148,7 +148,7 @@
         // Get the sitters
         var other_sitters = #{@other_sitters.to_json};
         // Add them to the map
-        addSittersToPage('other-map', other_sitters)
+        addSittersToPage('other-map', other_sitters, "#{image_url("other.png")}")
         // Remember that we have added a map for them
         $target.data({hasMap: true})
       }
@@ -158,7 +158,7 @@
         // Get the sitters
         var multi_sitters = #{@multi_sitters.to_json};
         // Add them to the map
-        addSittersToPage('multi-map', multi_sitters)
+        addSittersToPage('multi-map', multi_sitters, "#{image_url("multimarker.png")}")
         // Remember that we have added a map for them
         $target.data({hasMap: true})
       }

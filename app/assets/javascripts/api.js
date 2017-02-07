@@ -51,4 +51,10 @@ $(document).on("turbolinks:load", function() {
   if (nearbySitter.length > 0) {
     geoLocate(nearbySitter);
   }
+
+  var nearbySitter = $(".nearby-sitter-nav")
+
+  if (nearbySitter.length > 0) {
+    geoLocate(nearbySitter);
+  }
 })
