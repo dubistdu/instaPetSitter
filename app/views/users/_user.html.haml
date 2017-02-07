@@ -1,12 +1,12 @@
 %li.list-group-item
-  .col-xs-6.col-sm-3
+  .col-xs-6.col-sm-4
     = link_to user do
       -if user.picture.present?
         %img
           = image_tag attachment_url(user, :picture), size: "100x100", class: "img-responsive img-circle"
       -else
         = image_tag("dogicon.jpg", size: "100x100", class: "img-responsive img-circle")
-  .col-xs-6.col-sm-9
+  .col-xs-6.col-sm-8
     %span.name
       =user.name
     %br/

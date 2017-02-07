@@ -4,7 +4,10 @@ class UsersController < ApplicationController
   def index
     @users = User.all
 
-    if params[:latitude] && params[:longitude]
+    @latitude  = params[:latitude]
+    @longitude = params[:longitude]
+
+    if @latitude && @longitude
       nearby_users = User.near([params[:latitude], params[:longitude]], 40)
     else
       nearby_users = @users
@@ -15,13 +18,6 @@ class UsersController < ApplicationController
     @other_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind" => "other")
     @multi_sitters = @dog_sitters & @cat_sitters & @other_sitters
     # ^^^ Can not write ruby code in squel (line 1-3) The way to write ruby code is line4
-
-
-    @dogs_lat_and_lng = @dog_sitters.map { |user| { latitude: user.latitude, longitude: user.longitude } }
-    @cats_lat_and_lng  = @cat_sitters.map { |user| { latitude: user.latitude, longitude: user.longitude } }
-    @others_lat_and_lng  = @other_sitters.map { |user| { latitude: user.latitude, longitude: user.longitude } }
-    @multis_lat_and_lng  = @multi_sitters.map { |user| { latitude: user.latitude, longitude: user.longitude } }
-
   end
 
   # GET /users/1

@@ -2,22 +2,21 @@
 .cat_dog_tab
   .container.text-center
     .row
-      .col-xs-12.col-sm-6.col-sm-offset-3{:role => "tabpanel"}
+      .col-xs-12.col-sm-6{:role => "tabpanel"}
         / Nav tabs
-        %ul#nav-tabs.nav.nav-justified{:role => "tablist"}
-          %li.active{:role => "presentation"}
+        %ul#nav-tabs.nav.nav-jasmine{:role => "tablist"}
+          %li.col-xs-3.active{:role => "presentation"}
             %a{"aria-controls" => "dog", "data-toggle" => "tab", :href => "#dogicon", :role => "tab"}
-              =image_tag("dogicon.jpg", class:"img-circle", id: "img" , size: "80x80")
-          %li{:role => "presentation"}
+              =image_tag("dogicon.jpg", class:"img-circle", id: "img" , size: "70x70")
+          %li.col-xs-3{:role => "presentation"}
             %a{"aria-controls" => "cat", "data-toggle" => "tab", :href => "#caticon", :role => "tab"}
-              =image_tag("caticon.jpg", class:"img-circle", size: "80x80")
-          %li{:role => "presentation"}
+              =image_tag("caticon.jpg", class:"img-circle", size: "70x70")
+          %li.col-xs-3{:role => "presentation"}
             %a{"aria-controls" => "other", "data-toggle" => "tab", :href => "#othericon", :role => "tab"}
-              =image_tag("other.jpg", class:"img-circle", size: "80x80")
-          %li{:role => "presentation"}
+              =image_tag("other.jpg", class:"img-circle", size: "70x70")
+          %li.col-xs-3{:role => "presentation"}
             %a{"aria-controls" => "multi", "data-toggle" => "tab", :href => "#multiicon", :role => "tab"}
-              =image_tag("multipet.jpg", class:"img-circle", size: "80x80")
-              -# %img.img-circle{:src => "https://s3.amazonaws.com/uifaces/faces/twitter/annapickard/128.jpg"}/
+              =image_tag("multipet.jpg", class:"img-circle", size: "70x70")
 
         / Tab panes
         #tabs-collapse.tab-content
@@ -25,15 +24,16 @@
             .container.tab-inner
               .row.form-group
                 .col-xs-12.col-sm-6
-                  %ul#contact-list.list-group
+                  %ul.contact-list.list-group
                     = render @dog_sitters
-                    #dog-map
+                .col-xs-12.col-sm-6
+                  #dog-map
 
           #caticon.tab-pane.fade{:role => "tabpanel"}
             .container.tab-inner
               .row.form-group
                 .col-xs-12.col-sm-6
-                  %ul#contact-list.list-group
+                  %ul.contact-list.list-group
                     = render @cat_sitters
                     #cat-map
 
@@ -41,7 +41,7 @@
             .container.tab-inner
               .row.form-group
                 .col-xs-12.col-sm-6
-                  %ul#contact-list.list-group
+                  %ul.contact-list.list-group
                     = render @other_sitters
                     #other-map
 
@@ -49,7 +49,7 @@
             .container.tab-inner
               .row.form-group
                 .col-xs-12.col-sm-6
-                  %ul#contact-list.list-group
+                  %ul.contact-list.list-group
                     = render @multi_sitters
                     #multi-map
 
@@ -58,68 +58,98 @@
 
 :javascript
   $(document).on("turbolinks:load", function() {
-    var dogs_lat_and_lng = #{@dogs_lat_and_lng.to_json};
+    if (!document.getElementById('dog-map')) {
+      return
+    }
+
+    var latitude = #{@latitude.to_f};
+    var longitude = #{@longitude.to_f};
+
+    var dog_sitters = #{@dog_sitters.to_json};
 
     var dog_map = new google.maps.Map(document.getElementById('dog-map'), {
                     zoom: 11,
-                    center: new google.maps.LatLng(27.778469, -82.628033),
+                    center: new google.maps.LatLng(latitude, longitude),
                     mapTypeId: 'terrain'
                   });
 
-    for (var i = 0; i < dogs_lat_and_lng.length; i++) {
-      var latLng = new google.maps.LatLng(dogs_lat_and_lng[i].latitude, dogs_lat_and_lng[i].longitude);
-      var marker = new google.maps.Marker({
-        position: latLng,
-        map: dog_map
+    // Add a special marker just for the user
+    var latLng = new google.maps.LatLng(latitude, longitude);
+    var marker = new google.maps.Marker({
+      position: latLng,
+      icon: "https://maps.google.com/mapfiles/kml/shapes/info-i_maps.png",
+      // icon: "#{image_url("caticon.jpg")}",
+      map: dog_map
+    });
 
-      });
-        google.maps.event.addListener(marker, 'click', function() {
-        window.location.href = "/users/:id";
+    function attachInfoWindow(marker, message) {
+      marker.addListener('click', function() {
+        var infowindow = new google.maps.InfoWindow({
+          content: message,
+          maxWidth: 200
+        });
+
+        infowindow.open(marker.get('map'), marker);
       });
     }
 
-    var cats_lat_and_lng = #{@cats_lat_and_lng.to_json};
+    for (var i = 0; i < dog_sitters.length; i++) {
+      var userId = dog_sitters[i].id
+      var lat    = dog_sitters[i].latitude
+      var lng    = dog_sitters[i].longitude
+
+      var latLng = new google.maps.LatLng(lat, lng);
+      var marker = new google.maps.Marker({
+        position: latLng,
+        map: dog_map
+      });
+
+      var contentString = '<div><a href="/users/' + userId + '">' + dog_sitters[i].name + '</a></div>'
+      attachInfoWindow(marker, contentString)
+    }
+
+    var cat_sitters = #{@cat_sitters.to_json};
 
     var cat_map = new google.maps.Map(document.getElementById('cat-map'), {
                     zoom: 11,
-                    center: new google.maps.LatLng(27.778469, -82.628033),
+                    center: new google.maps.LatLng(latitude, longitude),
                     mapTypeId: 'terrain'
                   });
 
-    for (var i = 0; i <cats_lat_and_lng.length; i++) {
-      var latLng = new google.maps.LatLng(cats_lat_and_lng[i].latitude, cats_lat_and_lng[i].longitude);
+    for (var i = 0; i <cat_sitters.length; i++) {
+      var latLng = new google.maps.LatLng(cat_sitters[i].latitude, cat_sitters[i].longitude);
       var marker = new google.maps.Marker({
         position: latLng,
         map: cat_map
       });
     }
 
-    var others_lat_and_lng = #{@others_lat_and_lng.to_json};
+    var other_sitters = #{@other_sitters.to_json};
 
     var other_map = new google.maps.Map(document.getElementById('other-map'), {
                     zoom: 11,
-                    center: new google.maps.LatLng(27.778469, -82.628033),
+                    center: new google.maps.LatLng(latitude, longitude),
                     mapTypeId: 'terrain'
                   });
 
-    for (var i = 0; i <others_lat_and_lng.length; i++) {
-      var latLng = new google.maps.LatLng(others_lat_and_lng[i].latitude, others_lat_and_lng[i].longitude);
+    for (var i = 0; i <other_sitters.length; i++) {
+      var latLng = new google.maps.LatLng(other_sitters[i].latitude, other_sitters[i].longitude);
       var marker = new google.maps.Marker({
         position: latLng,
         map: other_map
       });
     }
 
-    var multis_lat_and_lng = #{@multis_lat_and_lng.to_json};
+    var multi_sitters = #{@multi_sitters.to_json};
 
     var multi_map = new google.maps.Map(document.getElementById('multi-map'), {
                     zoom: 11,
-                    center: new google.maps.LatLng(27.778469, -82.628033),
+                    center: new google.maps.LatLng(latitude, longitude),
                     mapTypeId: 'terrain'
                   });
 
-    for (var i = 0; i <multis_lat_and_lng.length; i++) {
-      var latLng = new google.maps.LatLng(multis_lat_and_lng[i].latitude, multis_lat_and_lng[i].longitude);
+    for (var i = 0; i < multi_sitters.length; i++) {
+      var latLng = new google.maps.LatLng(multi_sitters[i].latitude, multi_sitters[i].longitude);
       var marker = new google.maps.Marker({
         position: latLng,
         map: multi_map
