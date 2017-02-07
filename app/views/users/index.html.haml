@@ -35,7 +35,8 @@
                 .col-xs-12.col-sm-6
                   %ul.contact-list.list-group
                     = render @cat_sitters
-                    #cat-map
+                .col-xs-12.col-sm-6
+                  #cat-map
 
           #othericon.tab-pane.fade{:role => "tabpanel"}
             .container.tab-inner
@@ -43,7 +44,8 @@
                 .col-xs-12.col-sm-6
                   %ul.contact-list.list-group
                     = render @other_sitters
-                    #other-map
+                .col-xs-12.col-sm-6
+                  #other-map
 
           #multiicon.tab-pane.fade{:role => "tabpanel"}
             .container.tab-inner
@@ -51,6 +53,7 @@
                 .col-xs-12.col-sm-6
                   %ul.contact-list.list-group
                     = render @multi_sitters
+                  .col-xs-12.col-sm-6
                     #multi-map
 
 %script{src: "https://maps.googleapis.com/maps/api/js?key=#{ENV["GOOGLE_API_KEY"]}"}
@@ -58,7 +61,10 @@
 
 :javascript
   $(document).on("turbolinks:load", function() {
-    if (!document.getElementById('dog-map')) {
+    if (!document.getElementById('dog-map') ||
+        !document.getElementById('cat-map') ||
+        !document.getElementById('other-map') ||
+        !document.getElementById('multi-map')) {
       return
     }
 
@@ -108,7 +114,9 @@
       attachInfoWindow(marker, contentString)
     }
 
+
     var cat_sitters = #{@cat_sitters.to_json};
+
 
     var cat_map = new google.maps.Map(document.getElementById('cat-map'), {
                     zoom: 11,
@@ -116,28 +124,82 @@
                     mapTypeId: 'terrain'
                   });
 
-    for (var i = 0; i <cat_sitters.length; i++) {
-      var latLng = new google.maps.LatLng(cat_sitters[i].latitude, cat_sitters[i].longitude);
+    // Add a special marker just for the user
+    var latLng = new google.maps.LatLng(latitude, longitude);
+    var marker = new google.maps.Marker({
+      position: latLng,
+      icon: "https://maps.google.com/mapfiles/kml/shapes/info-i_maps.png",
+      // icon: "#{image_url("caticon.jpg")}",
+      map: cat_map
+    });
+
+    function attachInfoWindow(marker, message) {
+      marker.addListener('click', function() {
+        var infowindow = new google.maps.InfoWindow({
+          content: message,
+          maxWidth: 200
+        });
+
+        infowindow.open(marker.get('map'), marker);
+      });
+    }
+
+    for (var i = 0; i < cat_sitters.length; i++) {
+      var userId = cat_sitters[i].id
+      var lat    = cat_sitters[i].latitude
+      var lng    = cat_sitters[i].longitude
+
+      var latLng = new google.maps.LatLng(lat, lng);
       var marker = new google.maps.Marker({
         position: latLng,
         map: cat_map
       });
+
+      var contentString = '<div><a href="/users/' + userId + '">' + cat_sitters[i].name + '</a></div>'
+      attachInfoWindow(marker, contentString)
     }
 
-    var other_sitters = #{@other_sitters.to_json};
 
+    var other_sitters = #{@other_sitters.to_json};
     var other_map = new google.maps.Map(document.getElementById('other-map'), {
                     zoom: 11,
                     center: new google.maps.LatLng(latitude, longitude),
                     mapTypeId: 'terrain'
                   });
 
-    for (var i = 0; i <other_sitters.length; i++) {
-      var latLng = new google.maps.LatLng(other_sitters[i].latitude, other_sitters[i].longitude);
+    // Add a special marker just for the user
+    var latLng = new google.maps.LatLng(latitude, longitude);
+    var marker = new google.maps.Marker({
+      position: latLng,
+      icon: "https://maps.google.com/mapfiles/kml/shapes/info-i_maps.png",
+      // icon: "#{image_url("caticon.jpg")}",
+      map: other_map
+    });
+
+    function attachInfoWindow(marker, message) {
+      marker.addListener('click', function() {
+        var infowindow = new google.maps.InfoWindow({
+          content: message,
+          maxWidth: 200
+        });
+
+        infowindow.open(marker.get('map'), marker);
+      });
+    }
+
+    for (var i = 0; i < other_sitters.length; i++) {
+      var userId = other_sitters[i].id
+      var lat    = other_sitters[i].latitude
+      var lng    = other_sitters[i].longitude
+
+      var latLng = new google.maps.LatLng(lat, lng);
       var marker = new google.maps.Marker({
         position: latLng,
         map: other_map
       });
+
+      var contentString = '<div><a href="/users/' + userId + '">' + other_sitters[i].name + '</a></div>'
+      attachInfoWindow(marker, contentString)
     }
 
     var multi_sitters = #{@multi_sitters.to_json};
@@ -148,11 +210,38 @@
                     mapTypeId: 'terrain'
                   });
 
+    // Add a special marker just for the user
+    var latLng = new google.maps.LatLng(latitude, longitude);
+    var marker = new google.maps.Marker({
+      position: latLng,
+      icon: "https://maps.google.com/mapfiles/kml/shapes/info-i_maps.png",
+      // icon: "#{image_url("caticon.jpg")}",
+      map: multi_map
+    });
+
+    function attachInfoWindow(marker, message) {
+      marker.addListener('click', function() {
+        var infowindow = new google.maps.InfoWindow({
+          content: message,
+          maxWidth: 200
+        });
+
+        infowindow.open(marker.get('map'), marker);
+      });
+    }
+
     for (var i = 0; i < multi_sitters.length; i++) {
-      var latLng = new google.maps.LatLng(multi_sitters[i].latitude, multi_sitters[i].longitude);
+      var userId = multi_sitters[i].id
+      var lat    = multi_sitters[i].latitude
+      var lng    = multi_sitters[i].longitude
+
+      var latLng = new google.maps.LatLng(lat, lng);
       var marker = new google.maps.Marker({
         position: latLng,
         map: multi_map
       });
+
+      var contentString = '<div><a href="/users/' + userId + '">' + multi_sitters[i].name + '</a></div>'
+      attachInfoWindow(marker, contentString)
     }
   })
