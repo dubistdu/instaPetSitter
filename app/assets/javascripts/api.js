@@ -9,7 +9,10 @@ function geoLocate(nearbySitter) {
     nearbySitter.html("Sorry, no gelocation avaialble.")
   }
 
+  console.log(navigator.geolocation)
+
   if (!navigator.geolocation) {
+    console.log("NO GEOLOCATION")
     error()
     return
   }
