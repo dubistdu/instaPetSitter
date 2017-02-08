@@ -45,25 +45,8 @@
               = link_to "SIGN OUT", logout_path
           - else
 
-            %li.dropdown.menu
-              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                Signin
-                %span.caret
-                  %ul#login-dp.dropdown-menu
-                    %li
-                      .row
-                        .col-md-12
-                          Login via
-                          .social-buttons
-                            = link_to auth_path(provider:'facebook'), class: "btn btn-fb" do
-                              %i.fa.fa-facebook
-                              Facebook
-
-                          .social-buttons
-                            = link_to auth_path(provider:'twitter'), class: "btn btn-tw" do
-                              %i.fa.fa-twitter
-                              Twitter
-
+            %li.menu
+              = link_to "SIGN IN", login_path
 
   = video_tag("french.mp4", :autoplay => true, :playsinline => true, :loop => true, poster: "french.jpg", class: "bgvid")
 
@@ -71,11 +54,6 @@
   %script{:src => "http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"}
   .container
     .search
-      .word
-        %p.quote "Our perfect companions never
-        %p.quote have fewer than four feet."
-        %br/
-        %p Sidonie Gabrielle Colette
       .row.search-buttons
         .col-md-4.col-md-offset-2.each_button
           = link_to search_users_path, class: "btn btn-labeled default find-sitter" do

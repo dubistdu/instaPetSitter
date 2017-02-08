@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+  before_action :authenticate!, except: [:index, :results, :search]
   # GET /users
   def index
     @users = User.all
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
-    @user.pets.build
+    @user.sit_pets.build
   end
 
   # GET /users/1/edit
@@ -60,6 +60,9 @@ class UsersController < ApplicationController
   end
 
   def search
+  end
+
+  def signin
   end
 
   def results
@@ -109,7 +112,8 @@ class UsersController < ApplicationController
   private
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:name, :address, :city, :state, :zip, :phone, :email, :picture, :about_me, :backyard, :preferences, pets_attributes:[:pet_kind, :breed, :size])
+      params.require(:user).permit(:name, :address, :city, :state, :zip, :phone, :email, :picture, :about_me, :backyard, :preferences, pets_attributes:[:pet_kind, :breed, :size], sit_pets_attributes: [:breed, :pet_kind, :size, :pet_number])
+
     end
 
 end

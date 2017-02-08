@@ -19,8 +19,7 @@ class ApplicationController < ActionController::Base
   # Method to use in filter to ensure the user is logged in
   def authenticate!
     unless logged_in?
-      redirect_to login_path(provider: 'twitter')
-      redirect_to login_path(provider: 'facebook')
+      redirect_to login_path
     end
   end
 

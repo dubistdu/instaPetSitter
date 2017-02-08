@@ -43,25 +43,9 @@
                 = link_to "SIGN OUT", logout_path
             - else
 
-              %li.dropdown.menu
-                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                  Signin
-                  %span.caret
-                    %ul#login-dp.dropdown-menu
-                      %li
-                        .row
-                          .col-md-12
-                            Login via
-                            .social-buttons
-                              = link_to auth_path(provider:'facebook'), class: "btn btn-fb" do
-                                %i.fa.fa-facebook
-                                Facebook
-
-                            .social-buttons
-                              = link_to auth_path(provider:'twitter'), class: "btn btn-tw" do
-                                %i.fa.fa-twitter
-                                Twitter
-
+              %li.menu
+                = link_to "SIGN IN", login_path
+                  
         / /.navbar-collapse
       / /.container-fluid
 

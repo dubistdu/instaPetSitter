@@ -40,46 +40,30 @@
           %dt Email:
           %dd= @user.email
         .profile-grp
+          %dt About me:
+          %dd= @user.about_me
+        .profile-grp
           %dt Backyard:
           %dd
           -if @user.backyard == true
             Yes
           -else
             No
-        .profile-grp
-          %h3 About the Sitter's Pet
-        .profile-grp
-          %dt Type:
-          %dd
-            -@user.pets.each do |pet|
-              =pet.pet_kind
-          %dt Breed:
-          %dd
-            -@user.pets.each do |pet|
-              =pet.pet_kind
-          -# -if @user.pets.kind == "dog"
-            %dt Number of Dogs:
 
-          %dd= @user.name
-        .profile-grp
-          %dt Name:
-          %dd= @user.name
-        .profile-grp
-          %dt About me:
-          %dd= @user.about_me
         .profile-grp
           %h3 Pet sitting Preferences
-          %dt Type:
-          -# %dd= @user.pets.kind (do radio button here)
+        .profile-grp
+          %dt Pet Type:
+          -# %dd=@user.sit_pets.pet_kind
+        .profile-grp
           %dt Breed:
-          -# %dd= @user.pets.breed
-          -# -if @user.pets.kind == "dog"
-            %dt Number of Dogs:
-
-          %dd= @user.name
+          -# %dd=@user.sit_pets.breed
         .profile-grp
-          %dt Name:
-          %dd= @user.name
+          %dt Size of Dog:
+          -# %dd=@user.sit_pets.size
         .profile-grp
-          %dt About me:
-          %dd= @user.about_me
+          %dt Number of Pets:
+          -# %dd=@user.sit_pets.pet_number
+        .profile-grp
+          %dt Preferences:
+          %dd=@user.preferences

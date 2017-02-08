@@ -1,0 +1,15 @@
+.container.auth
+  .big-form.well.auth-box
+    .container-fuid.auth.search
+      %h2.text-center Login or Sign up
+
+      .row
+        .col-md-6.offset-md-3.social
+          = link_to auth_path(provider: 'facebook'), class: "btn btn-primary btn-block social-login-button" do
+            %i.fa.fa-facebook.social-login-icon{"aria-hidden" => "true"}
+              %span.social-login-text Login with Facebook
+
+        .col-md-6.offset-md-3.social
+          = link_to auth_path(provider: 'twitter'), class: "btn btn-info btn-block social-login-button" do
+            %i.fa.fa-twitter.social-login-icon{"aria-hidden" => "true"}
+              %span.social-login-text Login with Twitter

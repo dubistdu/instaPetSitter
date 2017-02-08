@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :favorites
   has_many :ratings
   attachment :picture
-  accepts_nested_attributes_for :pets
+  accepts_nested_attributes_for :sit_pets
 
   geocoded_by :full_street_address   # can also be an IP address
   after_validation :geocode          # auto-fetch coordinates
