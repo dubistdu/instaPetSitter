@@ -1,12 +1,12 @@
-%li.list-group-item
-  .col-xs-6.col-sm-4
+%li.list-group-item.userdetail
+  .col-xs-6.col-sm-4.grow.ip5photo
     = link_to user do
       -if user.picture.present?
         %img
           = image_tag attachment_url(user, :picture), size: "100x100", class: "img-responsive img-circle"
       -else
         = image_tag("dogicon.jpg", size: "100x100", class: "img-responsive img-circle")
-  .col-xs-6.col-sm-8
+  .col-xs-6.col-sm-8.ip5
     %span.name
       =user.name
     %br/
@@ -16,7 +16,7 @@
     %span
       = link_to user.phone, "tel:#{user.phone}"
     %br/
-    %span
+    %span.hide
       = link_to user.email, "mailto: #{user.email}"
     %br/
   .clearfix

@@ -21,9 +21,13 @@ h2.show {
   float: right;
   img {
     border-radius: 20px;
-    width: 250px;
+    width: 100%;
     // text-align: center;
     height:auto;
+  }
+
+  tr.type {
+    border-top: 5px solid black;
   }
 }
 
@@ -31,14 +35,12 @@ h2.show {
 .profile {
   padding-top: 5px;
   dd {
+    display: inline;
     font-family: 'Futura', sans-serif;
     font-size: 1.2em;
   }
   dt {
-    // put dd and dt on same row
-    float: left;
-    clear: left;
-    //
+    display: inline;
     margin-right: 5px;
     padding-top: 1px;
   }

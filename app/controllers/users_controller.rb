@@ -16,12 +16,18 @@ class UsersController < ApplicationController
     @dog_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind" => "dog")
     @cat_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind" => "cat")
     @other_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind" => "other")
+
     @multi_sitters = @dog_sitters & @cat_sitters & @other_sitters
     # ^^^ Can not write ruby code in squel (line 1-3) The way to write ruby code is line4
   end
 
   # GET /users/1
   def show
+    if params[:id].to_i == 0
+      redirect_to search_users_path
+      return
+    end
+
     @user = User.find(params[:id])
   end
 
@@ -46,8 +52,6 @@ class UsersController < ApplicationController
       render :new
     end
   end
-
-
 
   # PATCH/PUT /users/1
   def update
@@ -82,22 +86,16 @@ class UsersController < ApplicationController
       @users = @users.includes(:sit_pets).where("sit_pets.size" => params[:size_dog])
     end
 
-    # Limit the search to only the kinds of pets the user checked
-    @users = @users.includes(:sit_pets).where("sit_pets.pet_kind" => params[:pet_kind])
-
     # All other work is done, finally just find the nearby users
     nearby_users = @users.near(location, 20)
 
-    # All work is done and we have nearby users, so split them into groups
-    @dog_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind" => "dog")
-    @cat_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind" => "cat")
-    @other_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind" => "other")
-    @multi_sitters = @dog_sitters & @cat_sitters & @other_sitters
+    @results = nearby_users
 
-    @dogs_lat_and_lng = @dog_sitters.map { |user| { latitude: user.latitude, longitude: user.longitude } }
-    @cats_lat_and_lng  = @cat_sitters.map { |user| { latitude: user.latitude, longitude: user.longitude } }
-    @others_lat_and_lng  = @other_sitters.map { |user| { latitude: user.latitude, longitude: user.longitude } }
-    @multis_lat_and_lng  = @multi_sitters.map { |user| { latitude: user.latitude, longitude: user.longitude } }
+    # Limit the search to only the kinds of pets the user checked
+    params[:pet_kind].each do |kind|
+      # The users are the exist users who also sit this kind of pet
+      @results = @results & @users.includes(:sit_pets).where("sit_pets.pet_kind" => kind)
+    end
 
     render :results
   end

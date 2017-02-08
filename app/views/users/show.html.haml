@@ -14,23 +14,21 @@
 
 
 %dl.dl-horizontal
-.container-fluid.auth
+.auth
   %h2.show Sitter Profile
   .row.auth-box.show-background
     .col-sm-12.show-case
-      .col-sm-6.image-profile
+      .col-sm-4.image-profile
         .image-container.img.img-responsive
           -if @user.picture.present?
             = image_tag attachment_url(@user, :picture)
           -else
             = image_tag("dogicon.jpg", size: "250x250")
-      .col-sm-6.profile
+      .col-sm-4.profile
         .profile-grp
           %dt Name:
           %dd= @user.name
         .profile-grp
-          %dt
-          -# %dd= @user.ratings.star
           %dt Address:
           %dd= @user.address
         .profile-grp
@@ -45,25 +43,26 @@
         .profile-grp
           %dt Backyard:
           %dd
-          -if @user.backyard == true
-            Yes
-          -else
-            No
+            -if @user.backyard == true
+              Yes
+            -else
+              No
 
         .profile-grp
-          %h3 Pet sitting Preferences
-        .profile-grp
-          %dt Pet Type:
-          -# %dd=@user.sit_pets.pet_kind
-        .profile-grp
-          %dt Breed:
-          -# %dd=@user.sit_pets.breed
-        .profile-grp
-          %dt Size of Dog:
-          -# %dd=@user.sit_pets.size
-        .profile-grp
-          %dt Number of Pets:
-          -# %dd=@user.sit_pets.pet_number
-        .profile-grp
           %dt Preferences:
-          %dd=@user.preferences
+          %dd= @user.preferences
+
+      .col-sm-4
+        %h4= pluralize(@user.sit_pets.count, "Pet")
+        %table.table
+          %tbody
+            - @user.sit_pets.each.with_index do |sit_pet, index|
+              %tr.type
+                %td Type:
+                %td= sit_pet.pet_kind
+              %tr
+                %td Breed:
+                %td= sit_pet.breed
+              %tr
+                %td Size:
+                %td= sit_pet.size
