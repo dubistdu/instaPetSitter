@@ -4,52 +4,15 @@
   .form-group
     = sit_pets_form.label :pet_kind, class: 'col-sm-2 control-label'
     .col-sm-3
-      %select#select.form-control
-        %option{value:"/"}
-        %option{value:"dog"} Dog
-        %option{value:"cat"} Cat
-        %option{value:"other"} Other
-    .col-sm-3
-      %select#select.form-control
-        %option{value:"/"}
-        %option{value:"dog"} Dog
-        %option{value:"cat"} Cat
-        %option{value:"other"} Other
-    .col-sm-3
-      %select#select.form-control
-        %option{value:"/"}
-        %option{value:"dog"} Dog
-        %option{value:"cat"} Cat
-        %option{value:"other"} Other
+      = sit_pets_form.select :pet_kind, %w{Select dog cat other}, class: "form-control"
 
 
   .form-group
-    = sit_pets_form.label :Dog_breed, class: 'col-sm-2 control-label'
+    = sit_pets_form.label :breed, class: 'col-sm-2 control-label'
     .col-sm-10
       = sit_pets_form.text_field :breed, class: 'form-control'
 
   .form-group
-    = sit_pets_form.label :Dog_size, class: 'col-sm-2 control-label'
+    = sit_pets_form.label :size, class: 'col-sm-2 control-label'
     .col-sm-3
-      %select#select.form-control
-        %option{value:"/"}
-        %option{value:"size"} sm(>25 lbs)
-        %option{value:"size"} md(>45 lbs)
-        %option{value:"size"}lg(>100 lbs)
-        %option{value:"size"}giant(100+ lbs)
-
-    .col-sm-3
-      %select#select.form-control
-        %option{value:"/"}
-        %option{value:"size"} sm(>25 lbs)
-        %option{value:"size"} md(>45 lbs)
-        %option{value:"size"}lg(>100 lbs)
-        %option{value:"size"}giant(100+ lbs)
-
-    .col-sm-3
-      %select#select.form-control
-        %option{value:"/"}
-        %option{value:"size"} sm(>25 lbs)
-        %option{value:"size"} md(>45 lbs)
-        %option{value:"size"}lg(>100 lbs)
-        %option{value:"size"}giant(100+ lbs)
+      = sit_pets_form.select :size, ["Select", "sm(>25 lbs)", "md(>45 lbs)", "lg(>100 lbs)", "giant(100+ lbs)"], class: "form-control"
