@@ -92,7 +92,7 @@ class UsersController < ApplicationController
     @results = nearby_users
 
     # Limit the search to only the kinds of pets the user checked
-    params[:pet_kind].each do |kind|
+    Array(params[:pet_kind]).each do |kind|
       # The users are the exist users who also sit this kind of pet
       @results = @results & @users.includes(:sit_pets).where("sit_pets.pet_kind" => kind)
     end

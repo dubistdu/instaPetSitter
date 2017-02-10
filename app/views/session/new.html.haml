@@ -12,5 +12,5 @@
                 = link_to auth_path(provider: 'facebook'), class: 'icoFacebook' do
                   %i.fa.fa-facebook
               %li.col-md-2.col-md-offset-5
-                %a.icoTwitter{:href => "#", :title => "Twitter"}
+                = link_to auth_path(provider: 'twitter'), class: 'icoTwitter' do
                   %i.fa.fa-twitter
