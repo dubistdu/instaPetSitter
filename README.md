@@ -29,6 +29,18 @@ InstaPawSitter app's main feature is to quickly fetch nearby availabe pet sitter
   - OmniAuth Facebook
   - Geocoder 
 
-#Model
+-Model
+  - User
+  - sit_pet (pets sitter will be sitting)
+ 
+-Controller
+  - user's controller
+  - session (OmniAuth)
+  - pages (for landing page)
+  - sit_pet controller 
+  
+ #The App
+ 
+ https://instapawsitter.herokuapp.com/
 
 ![screenshot](https://github.com/dubistdu/instaPetSitter/blob/master/doc/instapawsitter.gif)
