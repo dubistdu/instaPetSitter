@@ -1,2 +1,2 @@
 
-![screenshot](https://github.com/dubistdu/instaPetSitter/doc/instapawsitter.gif)
+![screenshot](https://github.com/dubistdu/instaPetSitter/blob/master/doc/instapawsitter.gif)
