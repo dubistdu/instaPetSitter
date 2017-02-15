@@ -1,2 +1,2 @@
 
-![screenshot](https://github.com/dubistdu/pfa-network/blob/master/doc/pfan-demo.gif)
+![screenshot](https://github.com/dubistdu/instaPetSitter/doc/instapawsitter.gif)
