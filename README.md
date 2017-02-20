@@ -1,24 +1,46 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+#About the App
+InstaPawSitter app's main feature is to quickly fetch nearby availabe pet sitters based on a user's location.
 
-Things you may want to cover:
+#Features
+- App instantly fetches nearby available pet sitters based on a user's location
+- User can see the location of each sitters on the map with user's current location googlemap marker.
+- By logging in with social media, user can view the details of sitters.
+- List of sitters is listed based on the distance, from the closest to the user to the farthest.
+- User can also search a sitter by using a serach form only by simply adding a location or limit the search result by ratings,   by pet type sitters take, size of dogs sitter takes, and number of pets sitters take
+- Anyone can signup to become a sitter by filling out 'Become a sitter' form.
 
-* Ruby version
+#Making of the App
 
-* System dependencies
+-Boostrap (No themes)
+-Photoshop
+-Ruby On Rails
+-JS
+-jquery
+-Haml
+-scss
 
-* Configuration
+-API
+  - Google API
 
-* Database creation
+-Gems  
+  - OmniAuth
+  - OmniAuth Twitter
+  - OmniAuth Facebook
+  - Geocoder 
 
-* Database initialization
+-Model
+  - User
+  - sit_pet (pets sitter will be sitting)
+ 
+-Controller
+  - user's controller
+  - session (OmniAuth)
+  - pages (for landing page)
+  - sit_pet controller 
+  
+ #The App
+ 
+ https://instapawsitter.herokuapp.com/
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+![screenshot](https://github.com/dubistdu/instaPetSitter/blob/master/doc/instapawsitter.gif)
