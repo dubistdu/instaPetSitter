@@ -8,17 +8,12 @@ class UsersController < ApplicationController
     @longitude = params[:longitude]
 
     if @latitude && @longitude
-      nearby_users = User.near([params[:latitude], params[:longitude]], 40)
+      users = User.nearby(latitude, longitude)
     else
-      nearby_users = @users
+      users = @users
     end
 
-    @dog_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind" => "dog")
-    @cat_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind" => "cat")
-    @other_sitters = nearby_users.includes(:sit_pets).where("sit_pets.pet_kind" => "other")
-
-    @multi_sitters = @dog_sitters & @cat_sitters & @other_sitters
-    # ^^^ Can not write ruby code in squel (line 1-3) The way to write ruby code is line4
+    @dog_sitters, @cat_sitters, @other_sitters, @multi_sitters = User.categorize(users)
   end
 
   # GET /users/1

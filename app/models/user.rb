@@ -34,4 +34,16 @@ class User < ApplicationRecord
 
     return user
   end
+  def self.nearby(latitude, longitude)
+    User.near([latitude, longitude], 40)
+  end
+
+  def self.categorize(sitters)
+    dog_sitters = sitters.includes(:sit_pets).where("sit_pets.pet_kind" => "dog").distinct
+    cat_sitters = sitters.includes(:sit_pets).where("sit_pets.pet_kind" => "cat").distinct
+    other_sitters = sitters.includes(:sit_pets).where("sit_pets.pet_kind" => "other").distinct
+    multi_sitters = dog_sitters & cat_sitters & other_sitters
+
+    return [dog_sitters, cat_sitters, other_sitters, multi_sitters]
+  end
 end
