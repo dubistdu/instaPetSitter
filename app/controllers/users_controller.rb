@@ -6,9 +6,9 @@ class UsersController < ApplicationController
 
     @latitude  = params[:latitude]
     @longitude = params[:longitude]
-
     if @latitude && @longitude
-      users = User.nearby(latitude, longitude)
+      users = User.nearby(@latitude, @longitude)
+
     else
       users = @users
     end
